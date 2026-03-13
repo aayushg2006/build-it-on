@@ -10,17 +10,8 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background image */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${heroBg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.3,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-hero z-[1]" />
+        {/* Subtle gradient overlay - particles show through */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background/60 z-[1]" />
 
         <div className="relative z-10 container mx-auto px-4 text-center">
           <motion.div
