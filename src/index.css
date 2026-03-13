@@ -238,25 +238,6 @@
     );
   }
 
-  .glitch-trigger:is(:hover, :focus-visible, :active),
-  .glitch-link:is(:hover, :focus-visible, :active) {
-    animation: glitch-shift 0.2s steps(2, end) both;
-    text-shadow:
-      -1px 0 hsla(190, 100%, 68%, 0.75),
-      1px 0 hsla(330, 100%, 72%, 0.6);
-  }
-
-  .glitch-trigger:is(:hover, :focus-visible, :active)::before,
-  .glitch-link:is(:hover, :focus-visible, :active)::before {
-    opacity: 1;
-    animation: glitch-scan 0.2s linear both;
-  }
-
-  .glitch-trigger:is(:hover, :focus-visible, :active)::after,
-  .glitch-link:is(:hover, :focus-visible, :active)::after {
-    opacity: 1;
-    animation: glitch-lines 0.2s steps(2, end) both;
-  }
 }
 
 /* Scrollbar */

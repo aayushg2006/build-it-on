@@ -25,7 +25,8 @@ const Contact = () => {
                 <div className="grid md:grid-cols-3 gap-6">
                   {[
                     { icon: <Mail size={20} />, label: "Email", value: "ewt.tcet@gmail.com" },
-                    { icon: <Phone size={20} />, label: "Phone", value: "+91-86920 13791" },
+                    { icon: <Phone size={20} />, label: "EWT Head", value: "+91-86920 13791" },
+                    { icon: <Phone size={20} />, label: "EWT Tech Head", value: "+91-89288 82369" },
                     { icon: <MapPin size={20} />, label: "Venue", value: "Thakur College of Engineering & Technology, Mumbai" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-4">

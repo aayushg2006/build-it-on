@@ -66,7 +66,7 @@ const Index = () => {
       };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-x-clip">
+    <div className="min-h-screen flex items-center justify-center relative overflow-x-clip pb-32">
       <motion.div
         className="relative z-10 container mx-auto px-6 text-center"
         initial="hidden"
