@@ -18,24 +18,36 @@ const faqs = [
     a: "There are three tracks: (1) Education For All — build AI solutions for accessible education, (2) Sustainability — create AI tools for environmental sustainability, and (3) Social Issues — address pressing social challenges with AI.",
   },
   {
+    q: "Is there a solo participant allowed?",
+    a: "No, solo participants are not allowed! Teams of 2-4 members are recommended.",
+  },
+  {
     q: "Is there a registration fee?",
     a: "Registrations are completely FREE for all students across Mumbai!",
   },
   {
-    q: "What should I bring?",
-    a: "Bring your laptop, charger, student ID, and your creative mindset! All other resources and refreshments will be provided at the venue.",
+    q: "Refreshments?",
+    a: "Lunch will be provided to all participants, no snacks!",
+  },
+  {
+    q: "Is there a registration fee?",
+    a: "Registrations are completely FREE for all students across Mumbai!",
+  },
+  {
+    q: "Will accomadations be provided?",
+    a: "No Accomadations will be provided by the event organizers.",
   },
   {
     q: "How will projects be judged?",
     a: "Projects will be evaluated on innovation, AI integration, social impact, feasibility, and presentation quality by an expert panel of judges.",
   },
   {
-    q: "Can I participate solo?",
-    a: "While teams of 2-4 are recommended, solo participants are welcome. You can also find teammates at the event or during the registration process.",
-  },
-  {
     q: "Will there be mentors?",
     a: "Yes! Industry mentors and faculty members will be available throughout the hackathon to guide teams and provide technical support.",
+  },
+  {
+    q: "Participation criteria?",
+    a: "Participants must be based in mumbai and students precuing degrees in STEAM!",
   },
 ];
 
