@@ -14,6 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
+        sans: ["Space Grotesk", "sans-serif"],
         display: ["Orbitron", "sans-serif"],
         body: ["Space Grotesk", "sans-serif"],
       },

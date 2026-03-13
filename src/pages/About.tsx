@@ -47,7 +47,8 @@ const About = () => {
 
           {/* What is Build-it ON */}
           <AnimatedSection className="max-w-4xl mx-auto mb-16">
-            <div className="glass rounded-2xl p-8 md:p-10">
+            <div className="glass-strong rounded-3xl p-8 md:p-12 border border-primary/20 shadow-[0_0_30px_hsla(210,100%,50%,0.1)] relative overflow-hidden">
++             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                   <Brain size={24} className="text-primary" />
@@ -70,7 +71,7 @@ const About = () => {
           {/* Objectives & Expected Outcomes */}
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
             <AnimatedSection delay={0.1}>
-              <div className="glass rounded-2xl p-8 h-full">
+              <div className="glass-strong rounded-3xl p-8 h-full border border-border/50 hover:border-primary/30 transition-colors">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                     <Target size={24} className="text-primary" />
@@ -96,7 +97,7 @@ const About = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="glass rounded-2xl p-8 h-full">
+              <div className="glass-strong rounded-3xl p-8 h-full border border-border/50 hover:border-accent/30 transition-colors">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center">
                     <Rocket size={24} className="text-accent" />

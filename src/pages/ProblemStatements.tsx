@@ -29,9 +29,12 @@ const ProblemStatements = () => {
                 <Lock size={64} className="text-primary mx-auto" />
               </motion.div>
 
-              <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6">
+              <h2 className="font-display text-5xl md:text-7xl font-bold text-foreground mb-2 drop-shadow-[0_0_20px_rgba(0,180,255,0.4)]">
                 TBA
               </h2>
+              <p className="font-display text-sm md:text-base text-primary uppercase tracking-[0.3em] font-semibold mb-8">
+                (To Be Announced)
+              </p>
 
               <p className="text-muted-foreground text-lg leading-relaxed mb-6 max-w-md mx-auto">
                 The problem statements will be revealed 24 hours before the hackathon. Get ready to put your AI skills to the ultimate test!

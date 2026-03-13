@@ -60,8 +60,8 @@ const FAQ = () => {
             {faqs.map((faq, i) => (
               <AnimatedSection key={i} delay={i * 0.05}>
                 <motion.div
-                  className="glass rounded-2xl overflow-hidden"
-                  whileHover={{ scale: 1.01 }}
+                  className="glass rounded-2xl overflow-hidden tracking-wide"
+                  whileHover={{ scale: 1.02, boxShadow: "0 0 20px hsla(210, 100%, 50%, 0.15)" }}
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}

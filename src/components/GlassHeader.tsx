@@ -84,7 +84,7 @@ const GlassHeader = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass-strong border-t border-border/50"
+            className="lg:hidden glass-strong border-t border-border/50 overflow-y-auto max-h-[85vh]"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
               {navLinks.map((link) => (

@@ -12,12 +12,6 @@ const ParticleBackground = () => {
     let animId: number;
     const mouse = { x: -1000, y: -1000 };
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-
     // Neural network nodes
     const nodes: {
       x: number; y: number; vx: number; vy: number;
@@ -35,34 +29,69 @@ const ParticleBackground = () => {
       "0, 100, 255",    // bold blue
     ];
 
-    const nodeCount = Math.min(150, Math.floor((canvas.width * canvas.height) / 8000));
-
-    for (let i = 0; i < nodeCount; i++) {
-      const x = Math.random() * canvas.width;
-      const y = Math.random() * canvas.height;
-      nodes.push({
-        x, y,
-        baseX: x, baseY: y,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        size: Math.random() * 2.5 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.7 + 0.3,
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: Math.random() * 0.03 + 0.01,
-      });
-    }
-
     // Floating energy orbs
     const orbs = Array.from({ length: 4 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
       vx: (Math.random() - 0.5) * 0.2,
       vy: (Math.random() - 0.5) * 0.2,
       radius: Math.random() * 200 + 100,
       color: colors[Math.floor(Math.random() * 3)], // mostly blues
       phase: Math.random() * Math.PI * 2,
     }));
+
+    const resize = () => {
+      const oldWidth = canvas.width;
+      const oldHeight = canvas.height;
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // Scale existing particles so they proportionally move to the new screen space
+      if (nodes.length > 0 && oldWidth > 0 && oldHeight > 0) {
+        const scaleX = canvas.width / oldWidth;
+        const scaleY = canvas.height / oldHeight;
+        
+        nodes.forEach(p => {
+          p.x *= scaleX;
+          p.y *= scaleY;
+          p.baseX *= scaleX;
+          p.baseY *= scaleY;
+        });
+        
+        orbs.forEach(orb => {
+          orb.x *= scaleX;
+          orb.y *= scaleY;
+        });
+      }
+
+      // Dynamically adjust particle count based on new window size
+      const targetNodeCount = Math.min(450, Math.floor((canvas.width * canvas.height) / 8000));
+      
+      if (nodes.length < targetNodeCount) {
+        const itemsToAdd = targetNodeCount - nodes.length;
+        for (let i = 0; i < itemsToAdd; i++) {
+          const x = Math.random() * canvas.width;
+          const y = Math.random() * canvas.height;
+          nodes.push({
+            x, y,
+            baseX: x, baseY: y,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            size: Math.random() * 2.5 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: Math.random() * 0.4 + 0.1,
+            pulse: Math.random() * Math.PI * 2,
+            pulseSpeed: Math.random() * 0.03 + 0.01,
+          });
+        }
+      } else if (nodes.length > targetNodeCount) {
+        nodes.splice(targetNodeCount);
+      }
+    };
+    
+    // Initial configuration
+    resize();
 
     // Ripple effects on touch/click
     const ripples: { x: number; y: number; radius: number; maxRadius: number; alpha: number }[] = [];
@@ -137,7 +166,7 @@ const ParticleBackground = () => {
         ripple.alpha -= 0.01;
         ctx.beginPath();
         ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(0, 150, 255, ${ripple.alpha})`;
+        ctx.strokeStyle = `rgba(0, 150, 255, ${ripple.alpha * 0.5})`;
         ctx.lineWidth = 2;
         ctx.stroke();
         if (ripple.alpha <= 0 || ripple.radius >= ripple.maxRadius) ripples.splice(r, 1);
@@ -152,7 +181,7 @@ const ParticleBackground = () => {
           const dy = q.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 160) {
-            const lineAlpha = 0.2 * (1 - dist / 160);
+            const lineAlpha = 0.08 * (1 - dist / 160);
             // Pulse the connection
             const connectionPulse = Math.sin(time * 2 + i * 0.1) * 0.5 + 0.5;
             ctx.beginPath();
@@ -209,12 +238,14 @@ const ParticleBackground = () => {
         p.y += p.vy;
         p.pulse += p.pulseSpeed;
 
-        if (p.x < 0) { p.x = canvas.width; p.baseX = canvas.width; }
-        if (p.x > canvas.width) { p.x = 0; p.baseX = 0; }
-        if (p.y < 0) { p.y = canvas.height; p.baseY = canvas.height; }
-        if (p.y > canvas.height) { p.y = 0; p.baseY = 0; }
+        if (p.x < -50 || p.x > canvas.width + 50 || p.y < -50 || p.y > canvas.height + 50) {
+          p.x = Math.random() * canvas.width;
+          p.y = Math.random() * canvas.height;
+          p.baseX = p.x;
+          p.baseY = p.y;
+        }
 
-        const pulseAlpha = p.alpha * (0.6 + Math.sin(p.pulse) * 0.4);
+        const pulseAlpha = p.alpha * (0.4 + Math.sin(p.pulse) * 0.3);
 
         // Outer glow
         const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 6);
@@ -234,8 +265,8 @@ const ParticleBackground = () => {
       // Mouse cursor glow
       if (mouse.x > 0 && mouse.y > 0) {
         const cursorGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
-        cursorGlow.addColorStop(0, `rgba(0, 150, 255, 0.08)`);
-        cursorGlow.addColorStop(0.5, `rgba(0, 150, 255, 0.03)`);
+        cursorGlow.addColorStop(0, `rgba(0, 150, 255, 0.04)`);
+        cursorGlow.addColorStop(0.5, `rgba(0, 150, 255, 0.015)`);
         cursorGlow.addColorStop(1, `rgba(0, 150, 255, 0)`);
         ctx.fillStyle = cursorGlow;
         ctx.fillRect(mouse.x - 100, mouse.y - 100, 200, 200);

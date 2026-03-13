@@ -9,12 +9,12 @@ const Tracks = () => {
       <div className="min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">Hackathon Tracks</p>
+            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">Hackathon Themes</p>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient mb-6">
-              Choose Your Track
+              Choose Your Theme
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Build AI-powered solutions in one of three impactful tracks
+              Build AI-powered solutions in one of three impactful themes
             </p>
           </AnimatedSection>
 

@@ -1,6 +1,6 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
-import { Mail, MapPin, Phone, Instagram, Linkedin } from "lucide-react";
+import { Mail, MapPin, Phone, Instagram } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -25,7 +25,7 @@ const Contact = () => {
                 <div className="grid md:grid-cols-3 gap-6">
                   {[
                     { icon: <Mail size={20} />, label: "Email", value: "ewt.tcet@gmail.com" },
-                    { icon: <Phone size={20} />, label: "Phone", value: "+91 XXXXX XXXXX" },
+                    { icon: <Phone size={20} />, label: "Phone", value: "+91-86920 13791" },
                     { icon: <MapPin size={20} />, label: "Venue", value: "Thakur College of Engineering & Technology, Mumbai" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-4">
@@ -43,17 +43,15 @@ const Contact = () => {
                 <div className="mt-6 pt-6 border-t border-border/30">
                   <p className="text-sm text-muted-foreground mb-3">Follow us</p>
                   <div className="flex gap-3">
-                    {[
-                      { icon: <Instagram size={20} />, label: "Instagram" },
-                      { icon: <Linkedin size={20} />, label: "LinkedIn" },
-                    ].map((item, i) => (
-                      <button
-                        key={i}
-                        className="w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all"
-                      >
-                        {item.icon}
-                      </button>
-                    ))}
+                    <a
+                      href="https://www.instagram.com/tcet_ewt/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all"
+                      title="Follow us on Instagram"
+                    >
+                      <Instagram size={20} />
+                    </a>
                   </div>
                 </div>
               </div>

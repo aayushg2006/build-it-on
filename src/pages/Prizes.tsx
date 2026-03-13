@@ -27,7 +27,7 @@ const Prizes = () => {
             >
               <Trophy size={48} className="text-primary mx-auto mb-4" />
               <p className="text-muted-foreground text-sm font-display uppercase tracking-wider mb-3">Total Prize Pool</p>
-              <p className="font-display text-5xl md:text-7xl font-bold text-gradient">₹10,000</p>
+              <p className="font-display text-6xl md:text-8xl font-bold text-primary" style={{ textShadow: "0 0 30px hsla(210, 100%, 50%, 0.6)" }}>₹10,000</p>
               <p className="text-muted-foreground text-sm mt-3">+ Exciting Goodies & Certificates</p>
             </motion.div>
           </AnimatedSection>

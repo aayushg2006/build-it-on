@@ -193,10 +193,11 @@ const Timeline = () => {
 
           <div className="max-w-3xl mx-auto relative">
             <div
-              className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-0.5"
+              className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[3px] md:-translate-x-[1.5px]"
               style={{
                 background:
-                  "linear-gradient(to bottom, hsl(210 100% 50%), hsl(150 100% 45%), hsl(210 80% 55%))",
+                  "linear-gradient(to bottom, hsl(210 100% 55%), hsl(150 100% 45%), hsl(210 80% 55%))",
+                boxShadow: "0 0 15px hsl(210 100% 55% / 0.5)",
               }}
             />
 
