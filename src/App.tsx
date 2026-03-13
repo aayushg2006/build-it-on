@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,9 +16,34 @@ import Sponsors from "./pages/Sponsors.tsx";
 import Contact from "./pages/Contact.tsx";
 import FAQ from "./pages/FAQ.tsx";
 import Register from "./pages/Register.tsx";
+import ProblemStatements from "./pages/ProblemStatements.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
+
+const AppContent = () => {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
+  return (
+    <>
+      {!isHome && <GlassHeader />}
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/tracks" element={<Tracks />} />
+        <Route path="/rewards" element={<Prizes />} />
+        <Route path="/timeline" element={<Timeline />} />
+        <Route path="/sponsors" element={<Sponsors />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/problem-statements" element={<ProblemStatements />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+};
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -32,19 +57,7 @@ const App = () => {
         {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
         <BrowserRouter>
           <ParticleBackground />
-          <GlassHeader />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/tracks" element={<Tracks />} />
-            <Route path="/prizes" element={<Prizes />} />
-            <Route path="/timeline" element={<Timeline />} />
-            <Route path="/sponsors" element={<Sponsors />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AppContent />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

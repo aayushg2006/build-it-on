@@ -11,6 +11,7 @@ const ParticleBackground = () => {
 
     let animId: number;
     let mouse = { x: -1000, y: -1000 };
+    let touchPoints: { x: number; y: number; time: number }[] = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -18,55 +19,81 @@ const ParticleBackground = () => {
     };
     resize();
 
-    // Particle system
-    const particles: {
+    // Neural network nodes
+    const nodes: {
       x: number; y: number; vx: number; vy: number;
-      size: number; color: string; alpha: number; pulse: number; pulseSpeed: number;
+      baseX: number; baseY: number;
+      size: number; color: string; alpha: number;
+      pulse: number; pulseSpeed: number;
     }[] = [];
 
     const colors = [
-      "0, 220, 200",   // bright teal
-      "50, 180, 255",   // electric blue
-      "80, 255, 150",   // neon green
-      "120, 200, 255",  // sky blue
-      "0, 255, 200",    // cyan
-      "100, 255, 180",  // mint
+      "0, 150, 255",    // deep blue
+      "30, 120, 255",   // electric blue
+      "0, 200, 180",    // teal
+      "50, 255, 150",   // green accent
+      "80, 180, 255",   // sky blue
+      "0, 100, 255",    // bold blue
     ];
 
-    for (let i = 0; i < 120; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: Math.random() * 3 + 0.5,
+    const nodeCount = Math.min(150, Math.floor((canvas.width * canvas.height) / 8000));
+
+    for (let i = 0; i < nodeCount; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      nodes.push({
+        x, y,
+        baseX: x, baseY: y,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        size: Math.random() * 2.5 + 1,
         color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.6 + 0.2,
+        alpha: Math.random() * 0.7 + 0.3,
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.03 + 0.01,
       });
     }
 
-    // Floating orbs (large glowing circles)
-    const orbs = Array.from({ length: 5 }, () => ({
+    // Floating energy orbs
+    const orbs = Array.from({ length: 4 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      radius: Math.random() * 150 + 80,
-      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 0.2,
+      vy: (Math.random() - 0.5) * 0.2,
+      radius: Math.random() * 200 + 100,
+      color: colors[Math.floor(Math.random() * 3)], // mostly blues
       phase: Math.random() * Math.PI * 2,
     }));
 
-    // Shooting stars
-    const shootingStars: { x: number; y: number; vx: number; vy: number; life: number; maxLife: number; color: string }[] = [];
-    let shootTimer = 0;
+    // Ripple effects on touch/click
+    const ripples: { x: number; y: number; radius: number; maxRadius: number; alpha: number }[] = [];
 
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
-    window.addEventListener("mousemove", handleMouseMove);
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) {
+        mouse.x = touch.clientX;
+        mouse.y = touch.clientY;
+        touchPoints.push({ x: touch.clientX, y: touch.clientY, time: Date.now() });
+        if (touchPoints.length > 10) touchPoints.shift();
+      }
+    };
+
+    const handleClick = (e: MouseEvent | TouchEvent) => {
+      const x = 'clientX' in e ? e.clientX : (e as TouchEvent).touches?.[0]?.clientX || 0;
+      const y = 'clientY' in e ? e.clientY : (e as TouchEvent).touches?.[0]?.clientY || 0;
+      ripples.push({ x, y, radius: 0, maxRadius: 200, alpha: 0.6 });
+    };
+
+    canvas.style.pointerEvents = "auto";
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
+    canvas.addEventListener("click", handleClick as any);
+    canvas.addEventListener("touchstart", handleClick as any, { passive: true });
 
     let time = 0;
 
@@ -74,17 +101,17 @@ const ParticleBackground = () => {
       time += 0.01;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw floating orbs (ambient glow)
+      // Draw ambient orbs
       orbs.forEach(orb => {
         orb.x += orb.vx;
         orb.y += orb.vy;
-        orb.phase += 0.005;
+        orb.phase += 0.004;
         if (orb.x < -orb.radius) orb.x = canvas.width + orb.radius;
         if (orb.x > canvas.width + orb.radius) orb.x = -orb.radius;
         if (orb.y < -orb.radius) orb.y = canvas.height + orb.radius;
         if (orb.y > canvas.height + orb.radius) orb.y = -orb.radius;
 
-        const pulseAlpha = 0.03 + Math.sin(orb.phase) * 0.02;
+        const pulseAlpha = 0.04 + Math.sin(orb.phase) * 0.02;
         const gradient = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.radius);
         gradient.addColorStop(0, `rgba(${orb.color}, ${pulseAlpha * 2})`);
         gradient.addColorStop(0.5, `rgba(${orb.color}, ${pulseAlpha})`);
@@ -93,122 +120,115 @@ const ParticleBackground = () => {
         ctx.fillRect(orb.x - orb.radius, orb.y - orb.radius, orb.radius * 2, orb.radius * 2);
       });
 
-      // Draw & update particles
-      particles.forEach((p, i) => {
-        // Mouse interaction - particles flee from cursor
+      // Draw ripples
+      for (let r = ripples.length - 1; r >= 0; r--) {
+        const ripple = ripples[r];
+        ripple.radius += 3;
+        ripple.alpha -= 0.01;
+        ctx.beginPath();
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(0, 150, 255, ${ripple.alpha})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        if (ripple.alpha <= 0 || ripple.radius >= ripple.maxRadius) ripples.splice(r, 1);
+      }
+
+      // Draw neural network connections first (behind nodes)
+      for (let i = 0; i < nodes.length; i++) {
+        const p = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const q = nodes[j];
+          const dx = q.x - p.x;
+          const dy = q.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 160) {
+            const lineAlpha = 0.2 * (1 - dist / 160);
+            // Pulse the connection
+            const connectionPulse = Math.sin(time * 2 + i * 0.1) * 0.5 + 0.5;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(0, 150, 255, ${lineAlpha * (0.5 + connectionPulse * 0.5)})`;
+            ctx.lineWidth = 0.6 + connectionPulse * 0.4;
+            ctx.stroke();
+
+            // Draw data packet traveling along connection occasionally
+            if (Math.sin(time * 3 + i + j) > 0.95) {
+              const t = (Math.sin(time * 5 + i) + 1) / 2;
+              const px = p.x + dx * t;
+              const py = p.y + dy * t;
+              ctx.beginPath();
+              ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+              ctx.fillStyle = `rgba(50, 255, 150, 0.8)`;
+              ctx.fill();
+            }
+          }
+        }
+      }
+
+      // Draw & update nodes
+      nodes.forEach((p) => {
+        // Mouse/touch interaction - attract and repel
         const mdx = p.x - mouse.x;
         const mdy = p.y - mouse.y;
         const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mDist < 120) {
-          const force = (120 - mDist) / 120 * 0.5;
-          p.vx += (mdx / mDist) * force;
-          p.vy += (mdy / mDist) * force;
+        
+        if (mDist < 150) {
+          // Nodes get attracted slightly then repelled
+          const force = (150 - mDist) / 150;
+          if (mDist < 60) {
+            // Repel when very close
+            p.vx += (mdx / mDist) * force * 0.8;
+            p.vy += (mdy / mDist) * force * 0.8;
+          } else {
+            // Attract slightly when medium distance
+            p.vx -= (mdx / mDist) * force * 0.15;
+            p.vy -= (mdy / mDist) * force * 0.15;
+          }
         }
 
+        // Slight drift back to base position
+        p.vx += (p.baseX - p.x) * 0.0005;
+        p.vy += (p.baseY - p.y) * 0.0005;
+
         // Damping
-        p.vx *= 0.99;
-        p.vy *= 0.99;
+        p.vx *= 0.985;
+        p.vy *= 0.985;
 
         p.x += p.vx;
         p.y += p.vy;
         p.pulse += p.pulseSpeed;
 
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (p.x < 0) { p.x = canvas.width; p.baseX = canvas.width; }
+        if (p.x > canvas.width) { p.x = 0; p.baseX = 0; }
+        if (p.y < 0) { p.y = canvas.height; p.baseY = canvas.height; }
+        if (p.y > canvas.height) { p.y = 0; p.baseY = 0; }
 
         const pulseAlpha = p.alpha * (0.6 + Math.sin(p.pulse) * 0.4);
 
-        // Glow effect
-        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
-        glow.addColorStop(0, `rgba(${p.color}, ${pulseAlpha})`);
-        glow.addColorStop(0.5, `rgba(${p.color}, ${pulseAlpha * 0.3})`);
+        // Outer glow
+        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 6);
+        glow.addColorStop(0, `rgba(${p.color}, ${pulseAlpha * 0.6})`);
+        glow.addColorStop(0.4, `rgba(${p.color}, ${pulseAlpha * 0.15})`);
         glow.addColorStop(1, `rgba(${p.color}, 0)`);
         ctx.fillStyle = glow;
-        ctx.fillRect(p.x - p.size * 4, p.y - p.size * 4, p.size * 8, p.size * 8);
+        ctx.fillRect(p.x - p.size * 6, p.y - p.size * 6, p.size * 12, p.size * 12);
 
-        // Core dot
+        // Core node
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${p.color}, ${pulseAlpha})`;
         ctx.fill();
-
-        // Connect nearby particles with glowing lines
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[j].x - p.x;
-          const dy = particles[j].y - p.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
-            const lineAlpha = 0.15 * (1 - dist / 180);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${p.color}, ${lineAlpha})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
       });
 
-      // Shooting stars
-      shootTimer++;
-      if (shootTimer > 120 + Math.random() * 180) {
-        shootTimer = 0;
-        const startX = Math.random() * canvas.width;
-        shootingStars.push({
-          x: startX,
-          y: 0,
-          vx: (Math.random() - 0.5) * 4,
-          vy: Math.random() * 3 + 2,
-          life: 0,
-          maxLife: 60 + Math.random() * 40,
-          color: colors[Math.floor(Math.random() * colors.length)],
-        });
-      }
-
-      for (let s = shootingStars.length - 1; s >= 0; s--) {
-        const star = shootingStars[s];
-        star.x += star.vx;
-        star.y += star.vy;
-        star.life++;
-        const fade = 1 - star.life / star.maxLife;
-
-        // Trail
-        const trailLen = 20;
-        for (let t = 0; t < trailLen; t++) {
-          const tx = star.x - star.vx * t * 0.5;
-          const ty = star.y - star.vy * t * 0.5;
-          const ta = fade * (1 - t / trailLen) * 0.5;
-          ctx.beginPath();
-          ctx.arc(tx, ty, 2 - t * 0.08, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${star.color}, ${ta})`;
-          ctx.fill();
-        }
-
-        if (star.life >= star.maxLife) shootingStars.splice(s, 1);
-      }
-
-      // Hexagonal grid overlay (very subtle)
-      ctx.strokeStyle = `rgba(0, 200, 180, ${0.015 + Math.sin(time) * 0.005})`;
-      ctx.lineWidth = 0.5;
-      const hexSize = 60;
-      const hexH = hexSize * Math.sqrt(3);
-      for (let row = -1; row < canvas.height / hexH + 1; row++) {
-        for (let col = -1; col < canvas.width / (hexSize * 1.5) + 1; col++) {
-          const cx = col * hexSize * 1.5;
-          const cy = row * hexH + (col % 2 ? hexH / 2 : 0);
-          ctx.beginPath();
-          for (let k = 0; k < 6; k++) {
-            const angle = (Math.PI / 3) * k + Math.PI / 6;
-            const hx = cx + hexSize * 0.4 * Math.cos(angle);
-            const hy = cy + hexSize * 0.4 * Math.sin(angle);
-            if (k === 0) ctx.moveTo(hx, hy);
-            else ctx.lineTo(hx, hy);
-          }
-          ctx.closePath();
-          ctx.stroke();
-        }
+      // Mouse cursor glow
+      if (mouse.x > 0 && mouse.y > 0) {
+        const cursorGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
+        cursorGlow.addColorStop(0, `rgba(0, 150, 255, 0.08)`);
+        cursorGlow.addColorStop(0.5, `rgba(0, 150, 255, 0.03)`);
+        cursorGlow.addColorStop(1, `rgba(0, 150, 255, 0)`);
+        ctx.fillStyle = cursorGlow;
+        ctx.fillRect(mouse.x - 100, mouse.y - 100, 200, 200);
       }
 
       animId = requestAnimationFrame(animate);
@@ -219,7 +239,10 @@ const ParticleBackground = () => {
     window.addEventListener("resize", resize);
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("click", handleClick as any);
+      canvas.removeEventListener("touchstart", handleClick as any);
       cancelAnimationFrame(animId);
     };
   }, []);
@@ -227,8 +250,8 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ pointerEvents: "none" }}
+      className="fixed inset-0 z-0"
+      style={{ touchAction: "none" }}
     />
   );
 };
