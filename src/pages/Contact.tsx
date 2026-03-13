@@ -20,7 +20,7 @@ const Contact = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             {/* Contact Info */}
             <AnimatedSection delay={0.1}>
-              <div className="glass rounded-2xl p-8">
+              <div className="card glass rounded-2xl p-8">
                 <h3 className="font-display text-xl font-bold text-foreground mb-6">Reach Out</h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   {[
@@ -59,7 +59,7 @@ const Contact = () => {
 
             {/* Venue Map */}
             <AnimatedSection delay={0.2}>
-              <div className="glass rounded-2xl p-8">
+              <div className="card glass rounded-2xl p-8">
                 <h3 className="font-display text-xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <MapPin size={20} className="text-primary" />
                   Venue

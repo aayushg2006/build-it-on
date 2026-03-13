@@ -42,11 +42,12 @@ const GlassHeader = () => {
             <Link
               key={link.path}
               to={link.path}
+              data-glitch-text={link.label}
               className={`px-3 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${
                 location.pathname === link.path
                   ? "bg-primary/20 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-              }`}
+              } glitch-link`}
             >
               {link.label}
             </Link>
@@ -57,7 +58,8 @@ const GlassHeader = () => {
           href={DEVFOLIO_URL}
           target="_blank"
           rel="noreferrer"
-          className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity"
+          data-glitch-text="Register Now"
+          className="glitch-trigger hidden lg:flex items-center gap-2 px-5 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity"
           style={{
             background: "linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 45%))",
             color: "white",
@@ -92,11 +94,12 @@ const GlassHeader = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setMobileOpen(false)}
+                  data-glitch-text={link.label}
                   className={`px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                     location.pathname === link.path
                       ? "bg-primary/20 text-primary"
                       : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  } glitch-link`}
                 >
                   {link.label}
                 </Link>
@@ -106,7 +109,8 @@ const GlassHeader = () => {
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-lg font-semibold text-sm text-center mt-2 flex items-center justify-center gap-2"
+                data-glitch-text="Register Now"
+                className="glitch-trigger px-4 py-3 rounded-lg font-semibold text-sm text-center mt-2 flex items-center justify-center gap-2"
                 style={{
                   background: "linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 45%))",
                   color: "white",

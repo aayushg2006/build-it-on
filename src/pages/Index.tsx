@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, MapPin, Zap } from "lucide-react";
+import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import devfolioLogo from "@/assets/devfolio-logo.png";
+import ScrambleText from "@/components/ScrambleText";
 
 const DEVFOLIO_URL = "https://devfolio.co";
 const HACKATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
@@ -28,7 +29,18 @@ const getCountdown = (): CountdownState => {
   };
 };
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
 const Index = () => {
+  const shouldReduceMotion = useReducedMotion();
   const [countdown, setCountdown] = useState<CountdownState>(() => getCountdown());
 
   useEffect(() => {
@@ -38,16 +50,30 @@ const Index = () => {
 
   const hasStarted = countdown.totalMs <= 0;
 
+  const itemVariants = shouldReduceMotion
+    ? {
+        hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+        visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+      }
+    : {
+        hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
+        visible: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+        },
+      };
+
   return (
-    <div className="min-h-screen flex items-center justify-center relative">
-      <div className="relative z-10 container mx-auto px-6 text-center">
-        {/* Registration Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mb-8 flex justify-center"
-        >
+    <div className="min-h-screen flex items-center justify-center relative overflow-x-clip">
+      <motion.div
+        className="relative z-10 container mx-auto px-6 text-center"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div variants={itemVariants} className="mb-8 flex justify-center">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full glass-strong border-primary/30 text-xs md:text-sm shadow-[0_0_20px_hsla(210,100%,50%,0.2)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -57,39 +83,38 @@ const Index = () => {
           </div>
         </motion.div>
 
-        {/* Presenter & Main Title */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.35, duration: 0.8, type: "spring", stiffness: 100 }}
-          className="mb-8"
-        >
+        <motion.div variants={itemVariants} className="mb-8">
           <p className="font-display text-xs md:text-sm text-muted-foreground uppercase tracking-[0.3em] mb-4 font-semibold">
             TCET EWT Students Chapter Presents
           </p>
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
-            <span className="text-foreground drop-shadow-lg">EWT </span>
-            <span style={{ color: "hsl(210 100% 55%)", textShadow: "0 0 30px hsl(210 100% 55% / 0.5)" }}>Built-it</span>{" "}
-            <span style={{ color: "hsl(150 100% 45%)", textShadow: "0 0 30px hsl(150 100% 45% / 0.5)" }}>ON</span>
+            <ScrambleText text="EWT " className="text-foreground drop-shadow-lg" delay={110} duration={760} />
+            <ScrambleText
+              text="Built-it"
+              className="text-[hsl(210_100%_55%)]"
+              delay={260}
+              duration={840}
+            />
+            <span aria-hidden="true"> </span>
+            <ScrambleText
+              text="ON"
+              className="text-[hsl(150_100%_45%)]"
+              delay={420}
+              duration={720}
+            />
           </h1>
         </motion.div>
 
-        {/* Unified Subtitle Phrase */}
         <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          variants={itemVariants}
           className="text-base md:text-lg font-body text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          A college-level tech hackathon driving <span className="text-foreground font-semibold">AI for Social Impact & Sustainability</span>. 
+          A college-level tech hackathon driving <span className="text-foreground font-semibold">AI for Social Impact & Sustainability</span>.
           Registrations are <span className="text-accent font-bold">FREE</span> for all students across Mumbai.
         </motion.p>
-        
-        {/* Info Row Boxed */}
+
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65, duration: 0.6 }}
+          variants={itemVariants}
           className="flex items-center justify-center gap-3 sm:gap-4 text-xs md:text-sm font-medium mb-12 flex-wrap max-w-3xl mx-auto"
         >
           <div className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl glass bg-card/30 border-border/50 text-left hover:border-primary/40 transition-colors">
@@ -102,12 +127,7 @@ const Index = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.02, duration: 0.5 }}
-          className="mb-8"
-        >
+        <motion.div variants={itemVariants} className="mb-8">
           <div className="inline-flex flex-col items-center gap-4 px-6 py-4 rounded-2xl glass">
             <p className="font-display text-xs tracking-[0.2em] uppercase text-primary">Countdown To Hackathon Day</p>
             {hasStarted ? (
@@ -131,16 +151,15 @@ const Index = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
+          variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto"
         >
           <a
             href={DEVFOLIO_URL}
             target="_blank"
             rel="noreferrer"
-            className="group px-8 py-4 rounded-xl font-display font-bold text-base md:text-lg flex items-center gap-3 transition-all hover:opacity-90"
+            data-glitch-text="REGISTER NOW"
+            className="glitch-trigger group px-8 py-4 rounded-xl font-display font-bold text-base md:text-lg flex items-center gap-3 transition-all hover:opacity-90"
             style={{
               background: "linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 45%))",
               color: "white",
@@ -155,18 +174,24 @@ const Index = () => {
           </a>
           <Link
             to="/about"
-            className="w-full sm:w-auto px-8 py-4 rounded-xl glass border-primary/30 font-display font-semibold text-base md:text-lg transition-all hover:bg-primary/10 hover:border-primary/50 text-center"
+            data-glitch-text="EXPLORE EVENT"
+            className="glitch-trigger w-full sm:w-auto px-8 py-4 rounded-xl glass border-primary/30 font-display font-semibold text-base md:text-lg transition-all hover:bg-primary/10 hover:border-primary/50 text-center"
             style={{ color: "hsl(210 100% 65%)" }}
           >
             EXPLORE EVENT
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
 
-      <footer className="absolute bottom-0 left-0 right-0 py-6 text-center text-muted-foreground text-xs">
+      <motion.footer
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14, filter: "blur(8px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-0 left-0 right-0 py-6 text-center text-muted-foreground text-xs"
+      >
         <p>Copyright 2026 Build-it ON - AI For Social Impact & Sustainability</p>
         <p className="mt-1">Organized by TCET EWT Students Chapter</p>
-      </footer>
+      </motion.footer>
     </div>
   );
 };

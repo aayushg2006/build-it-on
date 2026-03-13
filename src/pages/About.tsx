@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
-import { Target, Lightbulb, Users, Heart, Brain, Handshake, GraduationCap, Rocket } from "lucide-react";
+import { Target, Lightbulb, Users, Heart, Brain, GraduationCap, Rocket } from "lucide-react";
 
 const objectives = [
   "Encourage students to build AI-based solutions",
@@ -29,7 +29,7 @@ const committeeMembers = [
 
 const About = () => {
   return (
-    <PageTransition tagline="Innovate • Build • Impact">
+    <PageTransition tagline="Innovate - Build - Impact">
       <div className="min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
@@ -47,8 +47,8 @@ const About = () => {
 
           {/* What is Build-it ON */}
           <AnimatedSection className="max-w-4xl mx-auto mb-16">
-            <div className="glass-strong rounded-3xl p-8 md:p-12 border border-primary/20 shadow-[0_0_30px_hsla(210,100%,50%,0.1)] relative overflow-hidden">
-+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
+            <div className="card glass-strong rounded-3xl p-8 md:p-12 border border-primary/20 shadow-[0_0_30px_hsla(210,100%,50%,0.1)] relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                   <Brain size={24} className="text-primary" />
@@ -71,7 +71,7 @@ const About = () => {
           {/* Objectives & Expected Outcomes */}
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
             <AnimatedSection delay={0.1}>
-              <div className="glass-strong rounded-3xl p-8 h-full border border-border/50 hover:border-primary/30 transition-colors">
+              <div className="card glass-strong rounded-3xl p-8 h-full border border-border/50 hover:border-primary/30 transition-colors">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                     <Target size={24} className="text-primary" />
@@ -97,7 +97,7 @@ const About = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <div className="glass-strong rounded-3xl p-8 h-full border border-border/50 hover:border-accent/30 transition-colors">
+              <div className="card glass-strong rounded-3xl p-8 h-full border border-border/50 hover:border-accent/30 transition-colors">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center">
                     <Rocket size={24} className="text-accent" />
@@ -134,7 +134,7 @@ const About = () => {
               <AnimatedSection key={i} delay={i * 0.1}>
                 <motion.div
                   whileHover={{ y: -6, scale: 1.03 }}
-                  className="glass rounded-2xl p-5 text-center"
+                  className="card glass rounded-2xl p-5 text-center"
                 >
                   <div className="text-primary mx-auto mb-3 flex justify-center">{item.icon}</div>
                   <h4 className="font-display text-sm font-bold text-foreground mb-1">{item.title}</h4>
@@ -157,7 +157,7 @@ const About = () => {
               <AnimatedSection key={i} delay={i * 0.08}>
                 <motion.div
                   whileHover={{ y: -8, scale: 1.03 }}
-                  className="glass rounded-2xl p-6 text-center"
+                  className="card glass rounded-2xl p-6 text-center"
                 >
                   <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4 text-primary font-display font-bold text-xl">
                     {member.initials}

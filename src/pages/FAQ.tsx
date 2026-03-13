@@ -56,43 +56,42 @@ const FAQ = () => {
             </p>
           </AnimatedSection>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <AnimatedSection className="max-w-3xl mx-auto space-y-4" staggerChildren staggerStep={0.1}>
             {faqs.map((faq, i) => (
-              <AnimatedSection key={i} delay={i * 0.05}>
-                <motion.div
-                  className="glass rounded-2xl overflow-hidden tracking-wide"
-                  whileHover={{ scale: 1.02, boxShadow: "0 0 20px hsla(210, 100%, 50%, 0.15)" }}
+              <motion.div
+                key={i}
+                className="card glass rounded-2xl overflow-hidden tracking-wide"
+                whileHover={{ boxShadow: "0 0 20px hsla(210, 100%, 50%, 0.15)" }}
+              >
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="glitch-link w-full px-6 py-5 flex items-center justify-between text-left"
                 >
-                  <button
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left"
+                  <span className="font-semibold text-foreground pr-4">{faq.q}</span>
+                  <motion.div
+                    animate={{ rotate: openIndex === i ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <span className="font-semibold text-foreground pr-4">{faq.q}</span>
+                    <ChevronDown size={20} className="text-primary shrink-0" />
+                  </motion.div>
+                </button>
+                <AnimatePresence>
+                  {openIndex === i && (
                     <motion.div
-                      animate={{ rotate: openIndex === i ? 180 : 0 }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <ChevronDown size={20} className="text-primary shrink-0" />
+                      <div className="px-6 pb-5 text-muted-foreground leading-relaxed">
+                        {faq.a}
+                      </div>
                     </motion.div>
-                  </button>
-                  <AnimatePresence>
-                    {openIndex === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="px-6 pb-5 text-muted-foreground leading-relaxed">
-                          {faq.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              </AnimatedSection>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </PageTransition>

@@ -30,7 +30,7 @@ const Sponsors = () => {
                   <motion.div
                     key={j}
                     whileHover={{ y: -4, scale: 1.05 }}
-                    className="glass rounded-2xl p-8 w-48 h-32 flex items-center justify-center card-hover"
+                    className="card glass rounded-2xl p-8 w-48 h-32 flex items-center justify-center card-hover"
                   >
                     <Handshake size={32} className="text-muted-foreground/50" />
                   </motion.div>
@@ -40,12 +40,16 @@ const Sponsors = () => {
           ))}
 
           <AnimatedSection className="text-center">
-            <div className="glass rounded-2xl p-8 max-w-lg mx-auto">
+            <div className="card glass rounded-2xl p-8 max-w-lg mx-auto">
               <h3 className="font-display text-lg font-bold text-foreground mb-3">Want to Sponsor?</h3>
               <p className="text-muted-foreground text-sm mb-4">
                 Partner with us to support AI innovation for social impact
               </p>
-              <a href="mailto:ewt.tcet@gmail.com" className="inline-block px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm">
+              <a
+                href="mailto:ewt.tcet@gmail.com"
+                data-glitch-text="Contact Us"
+                className="glitch-trigger inline-block px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm"
+              >
                 Contact Us
               </a>
             </div>

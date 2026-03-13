@@ -5,7 +5,7 @@ import { BookOpen, Leaf, Users, Brain, Globe, Lightbulb, Recycle, Heart, Shield 
 
 const Tracks = () => {
   return (
-    <PageTransition tagline="Choose Your Track • Build With AI">
+    <PageTransition tagline="Choose Your Track - Build With AI">
       <div className="min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
@@ -23,7 +23,7 @@ const Tracks = () => {
             <AnimatedSection delay={0.1}>
               <motion.div
                 whileHover={{ y: -8 }}
-                className="glass rounded-3xl p-7 md:p-8 h-full relative overflow-hidden"
+                className="card glass rounded-3xl p-7 md:p-8 h-full relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl" style={{ background: "hsla(210, 100%, 50%, 0.05)" }} />
                 <div className="relative z-10">
@@ -58,7 +58,7 @@ const Tracks = () => {
             <AnimatedSection delay={0.2}>
               <motion.div
                 whileHover={{ y: -8 }}
-                className="glass rounded-3xl p-7 md:p-8 h-full relative overflow-hidden"
+                className="card glass rounded-3xl p-7 md:p-8 h-full relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl" style={{ background: "hsla(150, 100%, 45%, 0.05)" }} />
                 <div className="relative z-10">
@@ -93,7 +93,7 @@ const Tracks = () => {
             <AnimatedSection delay={0.3}>
               <motion.div
                 whileHover={{ y: -8 }}
-                className="glass rounded-3xl p-7 md:p-8 h-full relative overflow-hidden"
+                className="card glass rounded-3xl p-7 md:p-8 h-full relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl" style={{ background: "hsla(280, 80%, 50%, 0.05)" }} />
                 <div className="relative z-10">

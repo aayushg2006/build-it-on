@@ -18,7 +18,7 @@ const ProblemStatements = () => {
           <AnimatedSection className="max-w-2xl mx-auto text-center">
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="glass rounded-3xl p-10 md:p-16 relative overflow-hidden"
+              className="card glass rounded-3xl p-10 md:p-16 relative overflow-hidden"
             >
               {/* Animated lock icon */}
               <motion.div

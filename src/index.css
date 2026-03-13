@@ -67,6 +67,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     line-height: 1.65;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -136,6 +137,126 @@
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 20px 40px hsl(210 100% 50% / 0.12);
   }
+
+  .card {
+    --card-rotate-x: 0deg;
+    --card-rotate-y: 0deg;
+    --card-spotlight-x: 50%;
+    --card-spotlight-y: 50%;
+    position: relative;
+    isolation: isolate;
+    transform-style: preserve-3d;
+    will-change: transform;
+    overflow: hidden;
+    transition:
+      transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 220ms ease;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    background: radial-gradient(
+      340px circle at var(--card-spotlight-x) var(--card-spotlight-y),
+      hsla(200, 100%, 70%, 0.28),
+      hsla(190, 100%, 62%, 0.12) 22%,
+      transparent 62%
+    );
+  }
+
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 180ms ease;
+    box-shadow: inset 0 0 0 1px hsla(210, 100%, 70%, 0.2);
+  }
+
+  .card[data-holo-active="true"] {
+    transform:
+      perspective(1200px)
+      rotateX(var(--card-rotate-x))
+      rotateY(var(--card-rotate-y))
+      translateY(-4px);
+    box-shadow:
+      0 16px 26px hsla(210, 100%, 60%, 0.18),
+      0 0 0 1px hsla(210, 100%, 72%, 0.16);
+  }
+
+  .card[data-holo-active="true"]::before,
+  .card[data-holo-active="true"]::after {
+    opacity: 1;
+  }
+
+  .glitch-trigger,
+  .glitch-link {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glitch-trigger::before,
+  .glitch-link::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: screen;
+    transform: translateX(-120%);
+    background: linear-gradient(
+      115deg,
+      transparent 10%,
+      hsla(190, 100%, 70%, 0.4) 38%,
+      hsla(330, 100%, 72%, 0.35) 50%,
+      hsla(190, 100%, 70%, 0.4) 62%,
+      transparent 90%
+    );
+  }
+
+  .glitch-trigger::after,
+  .glitch-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: screen;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0 8px,
+      hsla(210, 100%, 75%, 0.26) 9px 10px,
+      transparent 11px 18px
+    );
+  }
+
+  .glitch-trigger:is(:hover, :focus-visible, :active),
+  .glitch-link:is(:hover, :focus-visible, :active) {
+    animation: glitch-shift 0.2s steps(2, end) both;
+    text-shadow:
+      -1px 0 hsla(190, 100%, 68%, 0.75),
+      1px 0 hsla(330, 100%, 72%, 0.6);
+  }
+
+  .glitch-trigger:is(:hover, :focus-visible, :active)::before,
+  .glitch-link:is(:hover, :focus-visible, :active)::before {
+    opacity: 1;
+    animation: glitch-scan 0.2s linear both;
+  }
+
+  .glitch-trigger:is(:hover, :focus-visible, :active)::after,
+  .glitch-link:is(:hover, :focus-visible, :active)::after {
+    opacity: 1;
+    animation: glitch-lines 0.2s steps(2, end) both;
+  }
 }
 
 /* Scrollbar */
@@ -165,10 +286,62 @@
   50% { background-position: 100% 50%; }
 }
 
+@keyframes glitch-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  28% { transform: translate3d(-1px, 0, 0); }
+  52% { transform: translate3d(1px, 0, 0); }
+  76% { transform: translate3d(-0.5px, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes glitch-scan {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(130%); }
+}
+
+@keyframes glitch-lines {
+  0% { clip-path: inset(0 0 68% 0); }
+  35% { clip-path: inset(38% 0 28% 0); }
+  70% { clip-path: inset(66% 0 8% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .card::before,
+  .card::after {
+    display: none;
+  }
+
+  .card[data-holo-active="true"] {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .glitch-trigger,
+  .glitch-link {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    text-shadow: none !important;
+  }
+
+  .card::before,
+  .card::after,
+  .glitch-trigger::before,
+  .glitch-trigger::after,
+  .glitch-link::before,
+  .glitch-link::after {
+    display: none !important;
+  }
 }

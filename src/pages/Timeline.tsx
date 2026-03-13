@@ -133,7 +133,7 @@ const Timeline = () => {
           <AnimatedSection className="max-w-4xl mx-auto mb-12">
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="glass rounded-2xl p-6 md:p-8 text-center border"
+              className="card glass rounded-2xl p-6 md:p-8 text-center border"
               style={{ borderColor: "hsla(210, 100%, 50%, 0.35)" }}
             >
               <div className="flex items-center justify-center gap-2 mb-3">
@@ -191,7 +191,7 @@ const Timeline = () => {
             </motion.div>
           </AnimatedSection>
 
-          <div className="max-w-3xl mx-auto relative">
+          <AnimatedSection className="max-w-3xl mx-auto relative" staggerChildren staggerStep={0.1}>
             <div
               className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[3px] md:-translate-x-[1.5px]"
               style={{
@@ -205,77 +205,76 @@ const Timeline = () => {
               const status = getStatus(index);
               const isEven = index % 2 === 0;
               return (
-                <AnimatedSection key={item.phase} delay={index * 0.12}>
+                <div
+                  key={item.phase}
+                  className={`relative flex items-start mb-12 ${
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                >
                   <div
-                    className={`relative flex items-start mb-12 ${
-                      isEven ? "md:flex-row" : "md:flex-row-reverse"
+                    className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${
+                      isEven ? "md:pr-8 md:text-right" : "md:pl-8"
                     }`}
                   >
-                    <div
-                      className={`ml-16 md:ml-0 md:w-[calc(50%-2rem)] ${
-                        isEven ? "md:pr-8 md:text-right" : "md:pl-8"
-                      }`}
+                    <motion.div
+                      whileHover={{ scale: 1.03, y: -4 }}
+                      className={`card glass rounded-2xl p-6 relative ${status === "active" ? "border" : ""}`}
+                      style={
+                        status === "active"
+                          ? {
+                              borderColor: "hsla(210, 100%, 50%, 0.4)",
+                              boxShadow: "0 0 20px hsla(210, 100%, 50%, 0.15)",
+                            }
+                          : {}
+                      }
                     >
-                      <motion.div
-                        whileHover={{ scale: 1.03, y: -4 }}
-                        className={`glass rounded-2xl p-6 relative ${status === "active" ? "border" : ""}`}
-                        style={
-                          status === "active"
-                            ? {
-                                borderColor: "hsla(210, 100%, 50%, 0.4)",
-                                boxShadow: "0 0 20px hsla(210, 100%, 50%, 0.15)",
-                              }
-                            : {}
-                        }
+                      <div
+                        className={`flex items-center gap-2 mb-2 ${
+                          isEven ? "md:justify-end" : "md:justify-start"
+                        }`}
                       >
-                        <div
-                          className={`flex items-center gap-2 mb-2 ${
-                            isEven ? "md:justify-end" : "md:justify-start"
-                          }`}
-                        >
-                          <span className="text-primary font-display text-xs font-bold uppercase tracking-wider">
-                            {item.phase}
-                          </span>
-                          {status === "completed" && <CheckCircle2 size={14} className="text-accent" />}
-                          {status === "active" && (
-                            <motion.span
-                              className="w-2 h-2 rounded-full"
-                              style={{ background: "hsl(150 100% 45%)" }}
-                              animate={{ opacity: [1, 0.3, 1] }}
-                              transition={{ duration: 1, repeat: Infinity }}
-                            />
-                          )}
-                        </div>
-                        <h3 className="font-display text-lg font-bold text-foreground mb-1">{item.title}</h3>
-                        <p className="text-primary/80 font-display text-sm mb-3">{item.date}</p>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                      </motion.div>
-                    </div>
-
-                    <div
-                      className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full glass flex items-center justify-center z-10"
-                      style={{
-                        color:
-                          status === "completed"
-                            ? "hsl(150 100% 45%)"
-                            : status === "active"
-                              ? "hsl(210 100% 55%)"
-                              : "hsl(var(--muted-foreground))",
-                        boxShadow:
-                          status === "active"
-                            ? "0 0 20px hsla(210, 100%, 50%, 0.3)"
-                            : status === "completed"
-                              ? "0 0 15px hsla(150, 100%, 45%, 0.2)"
-                              : "none",
-                      }}
-                    >
-                      {item.icon}
-                    </div>
+                        <span className="text-primary font-display text-xs font-bold uppercase tracking-wider">
+                          {item.phase}
+                        </span>
+                        {status === "completed" && <CheckCircle2 size={14} className="text-accent" />}
+                        {status === "active" && (
+                          <motion.span
+                            className="w-2 h-2 rounded-full"
+                            style={{ background: "hsl(150 100% 45%)" }}
+                            animate={{ opacity: [1, 0.3, 1] }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                          />
+                        )}
+                      </div>
+                      <h3 className="font-display text-lg font-bold text-foreground mb-1">{item.title}</h3>
+                      <p className="text-primary/80 font-display text-sm mb-3">{item.date}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                    </motion.div>
                   </div>
-                </AnimatedSection>
+
+                  <div
+                    className="absolute left-6 md:left-1/2 -translate-x-1/2 w-12 h-12 rounded-full glass flex items-center justify-center z-10"
+                    style={{
+                      color:
+                        status === "completed"
+                          ? "hsl(150 100% 45%)"
+                          : status === "active"
+                            ? "hsl(210 100% 55%)"
+                            : "hsl(var(--muted-foreground))",
+                      boxShadow:
+                        status === "active"
+                          ? "0 0 20px hsla(210, 100%, 50%, 0.3)"
+                          : status === "completed"
+                            ? "0 0 15px hsla(150, 100%, 45%, 0.2)"
+                            : "none",
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+                </div>
               );
             })}
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </PageTransition>
