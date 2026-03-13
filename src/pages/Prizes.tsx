@@ -27,8 +27,8 @@ const PrizePoolCounter = ({ targetValue }: { targetValue: number }) => {
     return () => controls.stop();
   }, [isInView, shouldReduceMotion, targetValue]);
 
-  const formattedValue = `Rs ${displayValue.toLocaleString("en-IN")}`;
-  const staticValue = `Rs ${targetValue.toLocaleString("en-IN")}`;
+  const formattedValue = `${displayValue}+`;
+  const staticValue = `${targetValue}+`;
 
   return (
     <motion.p
@@ -73,7 +73,7 @@ const Prizes = () => {
               <Trophy size={48} className="text-primary mx-auto mb-4" />
               <p className="text-muted-foreground text-sm font-display uppercase tracking-wider mb-3">Total Prize Pool</p>
               <PrizePoolCounter targetValue={10000} />
-              <p className="text-muted-foreground text-sm mt-3">+ Exciting Goodies & Certificates</p>
+              <p className="text-muted-foreground text-sm mt-3">&amp; Exciting Goodies and Certificates</p>
             </motion.div>
           </AnimatedSection>
 

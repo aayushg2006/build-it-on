@@ -88,7 +88,6 @@ const Index = () => {
             TCET EWT Students Chapter Presents
           </p>
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
-            <ScrambleText text="EWT " className="text-foreground drop-shadow-lg" delay={110} duration={760} />
             <ScrambleText
               text="Built-it"
               className="text-[hsl(210_100%_55%)]"
