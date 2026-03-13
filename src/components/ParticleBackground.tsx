@@ -10,8 +10,7 @@ const ParticleBackground = () => {
     if (!ctx) return;
 
     let animId: number;
-    let mouse = { x: -1000, y: -1000 };
-    let touchPoints: { x: number; y: number; time: number }[] = [];
+    const mouse = { x: -1000, y: -1000 };
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -68,9 +67,18 @@ const ParticleBackground = () => {
     // Ripple effects on touch/click
     const ripples: { x: number; y: number; radius: number; maxRadius: number; alpha: number }[] = [];
 
+    const addRipple = (x: number, y: number) => {
+      ripples.push({ x, y, radius: 0, maxRadius: 200, alpha: 0.6 });
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+    };
+
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
     };
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -78,22 +86,24 @@ const ParticleBackground = () => {
       if (touch) {
         mouse.x = touch.clientX;
         mouse.y = touch.clientY;
-        touchPoints.push({ x: touch.clientX, y: touch.clientY, time: Date.now() });
-        if (touchPoints.length > 10) touchPoints.shift();
       }
     };
 
-    const handleClick = (e: MouseEvent | TouchEvent) => {
-      const x = 'clientX' in e ? e.clientX : (e as TouchEvent).touches?.[0]?.clientX || 0;
-      const y = 'clientY' in e ? e.clientY : (e as TouchEvent).touches?.[0]?.clientY || 0;
-      ripples.push({ x, y, radius: 0, maxRadius: 200, alpha: 0.6 });
+    const handleMouseClick = (e: MouseEvent) => {
+      addRipple(e.clientX, e.clientY);
     };
 
-    canvas.style.pointerEvents = "auto";
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("touchmove", handleTouchMove, { passive: true });
-    canvas.addEventListener("click", handleClick as any);
-    canvas.addEventListener("touchstart", handleClick as any, { passive: true });
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) addRipple(touch.clientX, touch.clientY);
+    };
+
+    // Listen on window so page overlays do not block cursor interaction.
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseout", handleMouseLeave);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("click", handleMouseClick);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
 
     let time = 0;
 
@@ -173,7 +183,7 @@ const ParticleBackground = () => {
         const mdy = p.y - mouse.y;
         const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
         
-        if (mDist < 150) {
+        if (mDist > 0 && mDist < 150) {
           // Nodes get attracted slightly then repelled
           const force = (150 - mDist) / 150;
           if (mDist < 60) {
@@ -239,10 +249,11 @@ const ParticleBackground = () => {
     window.addEventListener("resize", resize);
     return () => {
       window.removeEventListener("resize", resize);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("touchmove", handleTouchMove);
-      canvas.removeEventListener("click", handleClick as any);
-      canvas.removeEventListener("touchstart", handleClick as any);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseout", handleMouseLeave);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("click", handleMouseClick);
+      window.removeEventListener("touchstart", handleTouchStart);
       cancelAnimationFrame(animId);
     };
   }, []);
@@ -250,7 +261,7 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0"
+      className="fixed inset-0 z-0 pointer-events-none"
       style={{ touchAction: "none" }}
     />
   );

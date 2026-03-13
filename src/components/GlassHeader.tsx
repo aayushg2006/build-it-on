@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import devfolioLogo from "@/assets/devfolio-logo.png";
+
+const DEVFOLIO_URL = "https://devfolio.co";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -50,8 +53,10 @@ const GlassHeader = () => {
           ))}
         </nav>
 
-        <Link
-          to="/register"
+        <a
+          href={DEVFOLIO_URL}
+          target="_blank"
+          rel="noreferrer"
           className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity"
           style={{
             background: "linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 45%))",
@@ -59,8 +64,11 @@ const GlassHeader = () => {
             boxShadow: "0 0 20px hsla(210, 100%, 50%, 0.2)",
           }}
         >
+          <span className="inline-flex h-5 w-5 items-center justify-center rounded bg-white ring-1 ring-white/70 shadow-sm">
+            <img src={devfolioLogo} alt="Devfolio" className="h-3.5 w-3.5 object-contain" />
+          </span>
           Register Now
-        </Link>
+        </a>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -93,17 +101,22 @@ const GlassHeader = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                to="/register"
+              <a
+                href={DEVFOLIO_URL}
+                target="_blank"
+                rel="noreferrer"
                 onClick={() => setMobileOpen(false)}
-                className="px-4 py-3 rounded-lg font-semibold text-sm text-center mt-2"
+                className="px-4 py-3 rounded-lg font-semibold text-sm text-center mt-2 flex items-center justify-center gap-2"
                 style={{
                   background: "linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 45%))",
                   color: "white",
                 }}
               >
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded bg-white ring-1 ring-white/70 shadow-sm">
+                  <img src={devfolioLogo} alt="Devfolio" className="h-3.5 w-3.5 object-contain" />
+                </span>
                 Register Now
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

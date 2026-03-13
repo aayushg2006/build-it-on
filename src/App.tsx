@@ -15,7 +15,6 @@ import Timeline from "./pages/Timeline.tsx";
 import Sponsors from "./pages/Sponsors.tsx";
 import Contact from "./pages/Contact.tsx";
 import FAQ from "./pages/FAQ.tsx";
-import Register from "./pages/Register.tsx";
 import ProblemStatements from "./pages/ProblemStatements.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -37,7 +36,6 @@ const AppContent = () => {
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/problem-statements" element={<ProblemStatements />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
