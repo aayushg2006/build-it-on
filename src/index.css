@@ -1,18 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
-    --background: 220 50% 2%;
-    --foreground: 210 20% 95%;
+    --background: 220 30% 3%;
+    --foreground: 210 24% 95%;
 
-    --card: 220 40% 4%;
-    --card-foreground: 210 20% 95%;
+    --card: 220 25% 6%;
+    --card-foreground: 210 20% 92%;
 
-    --popover: 220 40% 4%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 220 25% 6%;
+    --popover-foreground: 210 20% 92%;
 
     --primary: 210 100% 50%;
     --primary-foreground: 220 30% 3%;
@@ -21,7 +22,7 @@
     --secondary-foreground: 210 20% 92%;
 
     --muted: 220 20% 10%;
-    --muted-foreground: 210 15% 50%;
+    --muted-foreground: 210 20% 72%;
 
     --accent: 150 100% 40%;
     --accent-foreground: 220 30% 3%;
@@ -58,22 +59,31 @@
     @apply border-border;
   }
 
+  html {
+    font-size: 17.2px;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.65;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    text-shadow: 0 0 18px hsla(210, 100%, 62%, 0.1);
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-card/40 backdrop-blur-xl border border-border/50;
+    @apply bg-card/60 backdrop-blur-xl border border-border/70;
   }
 
   .glass-strong {
-    @apply bg-card/60 backdrop-blur-2xl border border-border/60;
+    @apply bg-card/80 backdrop-blur-2xl border border-border/70;
   }
 
   .glow-primary {
@@ -86,12 +96,31 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(210 100% 55%), hsl(150 100% 45%), hsl(220 80% 55%));
+    background-image: linear-gradient(
+      120deg,
+      hsl(212 100% 72%) 0%,
+      hsl(205 100% 62%) 20%,
+      hsl(194 100% 58%) 42%,
+      hsl(162 100% 52%) 62%,
+      hsl(216 100% 68%) 100%
+    );
+    background-size: 220% 220%;
+    filter: drop-shadow(0 0 12px hsla(210, 100%, 65%, 0.22))
+      drop-shadow(0 0 26px hsla(150, 100%, 45%, 0.16));
+    animation: gradient-drift 9s ease-in-out infinite;
   }
 
   .text-gradient-blue {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(220 80% 55%), hsl(210 100% 50%));
+    background-image: linear-gradient(
+      120deg,
+      hsl(220 90% 74%) 0%,
+      hsl(210 100% 62%) 45%,
+      hsl(196 100% 58%) 100%
+    );
+    background-size: 200% 200%;
+    filter: drop-shadow(0 0 10px hsla(210, 100%, 62%, 0.2));
+    animation: gradient-drift 10s ease-in-out infinite;
   }
 
   .bg-gradient-hero {
@@ -129,6 +158,11 @@
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.7; }
+}
+
+@keyframes gradient-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .animate-float {
