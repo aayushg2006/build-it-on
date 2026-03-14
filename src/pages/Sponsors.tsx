@@ -89,7 +89,7 @@ const Sponsors = () => {
                         className="h-11 rounded-xl bg-primary/20 text-primary border border-primary/35 hover:bg-primary/20"
                       >
                         <FileDown size={18} />
-                        Download PPT Template (Coming Soon)
+                        Download PPT Template
                       </Button>
                     </div>
 
@@ -141,7 +141,7 @@ const Sponsors = () => {
                       className="h-11 rounded-xl bg-accent/20 text-accent border border-accent/35 hover:bg-accent/20"
                     >
                       <Download size={18} />
-                      Download Brochure (Coming Soon)
+                      Download Brochure
                     </Button>
                   </div>
                 </div>
