@@ -4,12 +4,9 @@ import BrandName from "@/components/BrandName";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
-import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 import { BookText, Download, FileDown, ShieldCheck } from "lucide-react";
 
 const Sponsors = () => {
-  useDevfolioSdk();
-
   return (
     <PageTransition tagline="Guidelines That Turn Ideas Into Impact">
       <div className="min-h-screen pt-24 pb-16">

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
 import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
-import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 
 const HACKATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
 
@@ -42,7 +41,6 @@ const containerVariants = {
 const Index = () => {
   const shouldReduceMotion = useReducedMotion();
   const [countdown, setCountdown] = useState<CountdownState>(() => getCountdown());
-  useDevfolioSdk();
 
   useEffect(() => {
     const intervalId = window.setInterval(() => setCountdown(getCountdown()), 1000);

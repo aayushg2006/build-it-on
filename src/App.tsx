@@ -9,6 +9,7 @@ import CommonFooter from "@/components/CommonFooter";
 import ParticleBackground from "@/components/ParticleBackground";
 import SplashScreen from "@/components/SplashScreen";
 import useHolographicCards from "@/hooks/useHolographicCards";
+import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
 import Tracks from "./pages/Tracks.tsx";
@@ -26,6 +27,7 @@ const AppContent = () => {
   const location = useLocation();
   const isHome = location.pathname === "/";
   useHolographicCards(location.pathname);
+  useDevfolioSdk(location.pathname);
 
   return (
     <>

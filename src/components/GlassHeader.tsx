@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
 import BrandName from "@/components/BrandName";
-import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -21,7 +20,6 @@ const navLinks = [
 const GlassHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
-  useDevfolioSdk();
 
   return (
     <motion.header

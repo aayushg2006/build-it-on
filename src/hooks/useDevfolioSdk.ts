@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 
 const DEVFOLIO_SDK_SRC = "https://apply.devfolio.co/v2/sdk.js";
-const DEVFOLIO_IFRAME_CLASS = "devfolio-button-iframe";
+const DEVFOLIO_BUTTON_SELECTOR = ".apply-button[data-hackathon-slug]";
+const DEVFOLIO_API_PREFIX = "https://api.devfolio.co/api/hackathons/";
 
-const useDevfolioSdk = () => {
+const useDevfolioSdk = (rerunKey = "") => {
   useEffect(() => {
     const isSecureContextForDevfolio =
       window.location.protocol === "https:" || window.location.hostname.endsWith("localhost");
@@ -14,7 +15,7 @@ const useDevfolioSdk = () => {
       return;
     }
 
-    const placeholders = document.querySelectorAll(".apply-button");
+    const placeholders = document.querySelectorAll(DEVFOLIO_BUTTON_SELECTOR);
     if (placeholders.length === 0) {
       return;
     }
@@ -30,8 +31,7 @@ const useDevfolioSdk = () => {
       return script;
     };
 
-    const script = mountSdk();
-    script.addEventListener("load", () => {
+    const onLoad = () => {
       if (canceled) {
         return;
       }
@@ -41,18 +41,49 @@ const useDevfolioSdk = () => {
           return;
         }
 
-        const hasUninitializedButtons = document.querySelectorAll(".apply-button").length > 0;
-        const hasDevfolioIframe = document.querySelectorAll(`.${DEVFOLIO_IFRAME_CLASS}`).length > 0;
-        if (hasUninitializedButtons && !hasDevfolioIframe) {
+        const hasUninitializedButtons = document.querySelectorAll(DEVFOLIO_BUTTON_SELECTOR).length > 0;
+        if (hasUninitializedButtons) {
           mountSdk();
         }
       }, 700);
-    });
+    };
+
+    const firstSlug = placeholders[0].getAttribute("data-hackathon-slug")?.trim();
+    if (!firstSlug) {
+      return;
+    }
+
+    let script: HTMLScriptElement | null = null;
+
+    const loadSdkIfActive = () => {
+      if (canceled) {
+        return;
+      }
+
+      script = mountSdk();
+      script.addEventListener("load", onLoad);
+    };
+
+    void fetch(`${DEVFOLIO_API_PREFIX}${encodeURIComponent(firstSlug)}`)
+      .then((response) => {
+        if (!response.ok) {
+          console.warn(
+            `[Devfolio] Could not pre-validate hackathon slug "${firstSlug}" (status: ${response.status}). Continuing SDK initialization.`,
+          );
+        }
+
+        loadSdkIfActive();
+      })
+      .catch(() => {
+        // Fallback to normal SDK loading when validation request fails due network blockers.
+        loadSdkIfActive();
+      });
 
     return () => {
       canceled = true;
+      script?.removeEventListener("load", onLoad);
     };
-  }, []);
+  }, [rerunKey]);
 };
 
 export default useDevfolioSdk;
