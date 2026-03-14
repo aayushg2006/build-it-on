@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
+import BrandName from "@/components/BrandName";
 import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
 import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 
@@ -90,7 +91,7 @@ const Index = () => {
           </p>
           <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
             <ScrambleText
-              text="Built-it"
+              text="Build-it"
               className="text-[hsl(210_100%_55%)]"
               delay={260}
               duration={840}
@@ -172,7 +173,9 @@ const Index = () => {
         transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="absolute bottom-0 left-0 right-0 py-6 text-center text-muted-foreground text-xs"
       >
-        <p>Copyright 2026 Build-it ON - AI For Social Impact & Sustainability</p>
+        <p>
+          Copyright 2026 <BrandName /> - AI For Social Impact & Sustainability
+        </p>
         <p className="mt-1">Organized by TCET EWT Students Chapter</p>
       </motion.footer>
     </div>

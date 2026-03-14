@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import BrandName from "@/components/BrandName";
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState(0);
@@ -82,8 +83,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
             transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
           >
             <h1 className="font-display text-4xl md:text-6xl font-bold">
-              <span style={{ color: "hsl(210 100% 50%)" }}>Build-it</span>{" "}
-              <span style={{ color: "hsl(150 100% 50%)" }}>ON</span>
+              <BrandName />
             </h1>
           </motion.div>
 

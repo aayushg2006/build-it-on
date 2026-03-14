@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
+import BrandName from "@/components/BrandName";
 import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 
 const navLinks = [
@@ -12,7 +13,7 @@ const navLinks = [
   { label: "Rewards", path: "/rewards" },
   { label: "Timeline", path: "/timeline" },
   { label: "Problem Statements", path: "/problem-statements" },
-  { label: "Sponsors", path: "/sponsors" },
+  { label: "Guidelines", path: "/guidelines" },
   { label: "FAQ", path: "/faq" },
   { label: "Contact", path: "/contact" },
 ];
@@ -31,10 +32,7 @@ const GlassHeader = () => {
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-display text-base font-bold">
-            <span style={{ color: "hsl(210 100% 55%)" }}>Build-it</span>{" "}
-            <span style={{ color: "hsl(150 100% 45%)" }}>ON</span>
-          </span>
+          <span className="font-display text-base font-bold"><BrandName /></span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
+import BrandName from "@/components/BrandName";
 import { Target, Lightbulb, Users, Heart, Brain, GraduationCap, Rocket } from "lucide-react";
 
 const objectives = [
@@ -36,8 +37,7 @@ const About = () => {
           <AnimatedSection className="text-center mb-16">
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">About The Event</p>
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              <span style={{ color: "hsl(210 100% 55%)" }}>Build-it</span>{" "}
-              <span style={{ color: "hsl(150 100% 45%)" }}>ON</span>
+              <BrandName />
             </h1>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
               AI For Social Impact & Sustainability — A structured hackathon initiative organized by the Extension Work Team (EWT)
@@ -53,10 +53,12 @@ const About = () => {
                 <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
                   <Brain size={24} className="text-primary" />
                 </div>
-                <h2 className="font-display text-2xl font-bold text-foreground">What is BUILD-IT ON?</h2>
+                <h2 className="font-display text-2xl font-bold text-foreground">
+                  What is <BrandName />?
+                </h2>
               </div>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                BUILD-IT ON is a structured hackathon initiative organized by the Extension Work Team (EWT) aimed at promoting innovation,
+                <BrandName /> is a structured hackathon initiative organized by the Extension Work Team (EWT) aimed at promoting innovation,
                 technical learning, and social responsibility among students. The event focuses on developing Artificial Intelligence based
                 solutions to address real-world challenges related to society, sustainability, and education.
               </p>
@@ -149,7 +151,9 @@ const About = () => {
             <h2 className="font-display text-3xl md:text-4xl font-bold text-gradient mb-4">
               Organizing Committee
             </h2>
-            <p className="text-muted-foreground">The team behind Build-it ON</p>
+            <p className="text-muted-foreground">
+              The team behind <BrandName />
+            </p>
           </AnimatedSection>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">

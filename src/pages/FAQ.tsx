@@ -2,12 +2,22 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
+import BrandName from "@/components/BrandName";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    q: "What is Build-it ON?",
-    a: "Build-it ON is a 6-hour AI hackathon organized by TCET EWT Students Chapter. Participants build AI-powered solutions across three tracks: Education For All, Sustainability, and Social Issues.",
+    q: (
+      <>
+        What is <BrandName />?
+      </>
+    ),
+    a: (
+      <>
+        <BrandName /> is a 6-hour AI hackathon organized by TCET EWT Students Chapter. Participants build
+        AI-powered solutions across three tracks: Education For All, Sustainability, and Social Issues.
+      </>
+    ),
   },
   {
     q: "Who can participate?",
@@ -64,7 +74,7 @@ const FAQ = () => {
               FAQs
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Everything you need to know about Build-it ON
+              Everything you need to know about <BrandName />
             </p>
           </AnimatedSection>
 
