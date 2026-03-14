@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
-import devfolioLogo from "@/assets/devfolio-logo.png";
+import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
+import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
+import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 
-const DEVFOLIO_URL = "https://devfolio.co";
 const HACKATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
 
 type CountdownState = {
@@ -42,6 +42,7 @@ const containerVariants = {
 const Index = () => {
   const shouldReduceMotion = useReducedMotion();
   const [countdown, setCountdown] = useState<CountdownState>(() => getCountdown());
+  useDevfolioSdk();
 
   useEffect(() => {
     const intervalId = window.setInterval(() => setCountdown(getCountdown()), 1000);
@@ -153,24 +154,7 @@ const Index = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto"
         >
-          <a
-            href={DEVFOLIO_URL}
-            target="_blank"
-            rel="noreferrer"
-            data-glitch-text="REGISTER NOW"
-            className="glitch-trigger group px-8 py-4 rounded-xl font-display font-bold text-base md:text-lg flex items-center gap-3 transition-all hover:opacity-90"
-            style={{
-              background: "linear-gradient(135deg, hsl(210 100% 50%), hsl(200 100% 45%))",
-              color: "white",
-              boxShadow: "0 0 30px hsla(210, 100%, 50%, 0.3), 0 0 60px hsla(210, 100%, 50%, 0.1)",
-            }}
-          >
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-md bg-white ring-1 ring-white/70 shadow-sm">
-              <img src={devfolioLogo} alt="Devfolio" className="h-4 w-4 object-contain" />
-            </span>
-            REGISTER NOW
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
-          </a>
+          <ApplyWithDevfolioButton className="w-full sm:w-auto flex justify-center" buttonWidth={312} />
           <Link
             to="/about"
             data-glitch-text="EXPLORE EVENT"
