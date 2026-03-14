@@ -3,7 +3,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
-import BrandName from "@/components/BrandName";
 import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
 import useDevfolioSdk from "@/hooks/useDevfolioSdk";
 
@@ -167,17 +166,6 @@ const Index = () => {
         </motion.div>
       </motion.div>
 
-      <motion.footer
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 14, filter: "blur(8px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-0 left-0 right-0 py-6 text-center text-muted-foreground text-xs"
-      >
-        <p>
-          Copyright 2026 <BrandName /> - AI For Social Impact & Sustainability
-        </p>
-        <p className="mt-1">Organized by TCET EWT Students Chapter</p>
-      </motion.footer>
     </div>
   );
 };

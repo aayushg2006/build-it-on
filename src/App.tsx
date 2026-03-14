@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import GlassHeader from "@/components/GlassHeader";
+import CommonFooter from "@/components/CommonFooter";
 import ParticleBackground from "@/components/ParticleBackground";
 import SplashScreen from "@/components/SplashScreen";
 import useHolographicCards from "@/hooks/useHolographicCards";
@@ -42,6 +43,7 @@ const AppContent = () => {
         <Route path="/problem-statements" element={<ProblemStatements />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <CommonFooter />
     </>
   );
 };

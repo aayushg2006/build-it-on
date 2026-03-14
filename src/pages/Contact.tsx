@@ -1,7 +1,7 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
 import BrandName from "@/components/BrandName";
-import { Mail, MapPin, Phone, Instagram } from "lucide-react";
+import { Mail, MapPin, Phone, Instagram, Linkedin } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -69,11 +69,29 @@ const Contact = () => {
                     <a
                       href="https://www.instagram.com/tcet_ewt/"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noreferrer noopener"
                       className="w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all"
                       title="Follow us on Instagram"
                     >
                       <Instagram size={20} />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/tcet-ewt-a5b5923b7/"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="w-10 h-10 rounded-lg bg-muted/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/20 transition-all"
+                      title="Follow us on LinkedIn"
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                  </div>
+                  <div className="mt-3">
+                    <a
+                      href="https://www.linkedin.com/in/tcet-ewt-a5b5923b7/"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="text-xs text-primary font-medium hover:underline break-all"
+                    >
                     </a>
                   </div>
                 </div>

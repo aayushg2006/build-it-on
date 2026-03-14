@@ -40,10 +40,6 @@ const faqs = [
     a: "Lunch will be provided to all participants, no snacks!",
   },
   {
-    q: "Is there a registration fee?",
-    a: "Registrations are completely FREE for all students across Mumbai!",
-  },
-  {
     q: "Will accomadations be provided?",
     a: "No Accomadations will be provided by the event organizers.",
   },
