@@ -25,6 +25,7 @@ import GyaneshwarImg from "@/assets/OC Images/Gyaneshwar Jha.jpg";
 import BhavyaImg from "@/assets/OC Images/Bhavya Sharma.jpg";
 import GautamImg from "@/assets/OC Images/Gautam Gupta.png";
 import PriyaImg from "@/assets/OC Images/Priya Tiwari.jpeg"
+import VedImg from "@/assets/OC Images/Ved Nalavade.jpeg"
 
 const objectives = [
   "Encourage students to build AI-based solutions",
@@ -62,6 +63,7 @@ const organizingCommittee = [
     members: [
       { name: "Aayush Gupta", position: "Developer", image: AayushImg },
       { name: "Ananya Pillai", position: "Developer", image: AnanyaImg },
+      { name: "Ved Nalavade", position: "Developer", image: VedImg},
       { name: "Kalp Doshi", position: "Developer", image: KalpImg },
     ]
   },
