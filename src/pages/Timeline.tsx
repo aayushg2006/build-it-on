@@ -73,7 +73,6 @@ const Timeline = () => {
           <AnimatedSection className="text-center mb-10">
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">Event Schedule</p>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient mb-6">Timeline</h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Current phase updates based on today&apos;s date</p>
           </AnimatedSection>
 
           <AnimatedSection className="max-w-4xl mx-auto mb-12">
