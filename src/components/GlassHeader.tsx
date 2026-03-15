@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
+import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 import BrandName from "@/components/BrandName";
 
 const navLinks = [
@@ -50,7 +50,7 @@ const GlassHeader = () => {
           ))}
         </nav>
 
-        <ApplyWithDevfolioButton
+        <ApplyWithUnstopButton
           className="hidden lg:block"
           buttonWidth={240}
         />
@@ -88,7 +88,7 @@ const GlassHeader = () => {
                 </Link>
               ))}
               <div className="mt-2 flex justify-center px-2" onClick={() => setMobileOpen(false)}>
-                <ApplyWithDevfolioButton
+                <ApplyWithUnstopButton
                   className="w-full flex justify-center"
                   buttonWidth={312}
                 />

@@ -3,7 +3,7 @@ import PageTransition from "@/components/PageTransition";
 import BrandName from "@/components/BrandName";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
+import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 import { BookText, Download, FileDown, ShieldCheck } from "lucide-react";
 
 const Sponsors = () => {
@@ -63,9 +63,9 @@ const Sponsors = () => {
 
                     <div className="rounded-2xl border border-border/60 bg-card/40 p-4 md:p-5">
                       <p className="text-sm md:text-base text-foreground mb-3">
-                        <span className="font-semibold text-primary">4.</span> Register your team on Devfolio and follow the platform submission steps.
+                        <span className="font-semibold text-primary">4.</span> Register your team on Unstop and follow the platform submission steps.
                       </p>
-                      <ApplyWithDevfolioButton className="w-full sm:w-auto flex justify-start" buttonWidth={292} />
+                      <ApplyWithUnstopButton className="w-full sm:w-auto flex justify-start" buttonWidth={292} />
                     </div>
 
                     <div className="rounded-2xl border border-border/60 bg-card/40 p-4 md:p-5">

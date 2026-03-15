@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
-import ApplyWithDevfolioButton from "@/components/ApplyWithDevfolioButton";
+import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 
 const HACKATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
 
@@ -152,7 +152,7 @@ const Index = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto"
         >
-          <ApplyWithDevfolioButton className="w-full sm:w-auto flex justify-center" buttonWidth={312} />
+          <ApplyWithUnstopButton className="w-full sm:w-auto flex justify-center" buttonWidth={312} />
           <Link
             to="/about"
             data-glitch-text="EXPLORE EVENT"
