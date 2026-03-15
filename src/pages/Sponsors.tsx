@@ -92,7 +92,7 @@ const Sponsors = () => {
 
                     <div className="rounded-2xl border border-border/60 bg-card/40 p-4 md:p-5">
                       <p className="text-sm md:text-base text-foreground">
-                        <span className="font-semibold text-primary">7.</span> Only top 20 teams will be selected for the final hackathon day (6-hour build).
+                        <span className="font-semibold text-primary">7.</span> Only top 20 teams will be selected for the final Buildathon day (6-hour build).
                       </p>
                     </div>
 

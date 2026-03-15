@@ -14,7 +14,7 @@ const faqs = [
     ),
     a: (
       <>
-        <BrandName /> is a 6-hour AI hackathon organized by TCET EWT Students Chapter. Participants build
+        <BrandName /> is a 6-hour AI Buildathon organized by TCET EWT Students Chapter. Participants build
         AI-powered solutions across three tracks: Education For All, Sustainability, and Social Issues.
       </>
     ),
@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     q: "Will there be mentors?",
-    a: "Yes! Industry mentors and faculty members will be available throughout the hackathon to guide teams and provide technical support.",
+    a: "Yes! Industry mentors and faculty members will be available throughout the Buildathon to guide teams and provide technical support.",
   },
   {
     q: "Participation criteria?",

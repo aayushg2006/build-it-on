@@ -37,7 +37,7 @@ const ProblemStatements = () => {
               </p>
 
               <p className="text-muted-foreground text-lg leading-relaxed mb-6 max-w-md mx-auto">
-                The problem statements will be revealed 24 hours before the hackathon. Get ready to put your AI skills to the ultimate test!
+                The problem statements will be revealed 24 hours before the Buildathon. Get ready to put your AI skills to the ultimate test!
               </p>
 
               <motion.div

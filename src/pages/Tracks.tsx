@@ -9,7 +9,7 @@ const Tracks = () => {
       <div className="min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-16">
-            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">Hackathon Themes</p>
+            <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">Buildathon Themes</p>
             <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient mb-6">
               Choose Your Theme
             </h1>

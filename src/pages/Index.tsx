@@ -5,7 +5,7 @@ import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
 import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 
-const HACKATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
+const BUILDATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
 
 type CountdownState = {
   totalMs: number;
@@ -16,7 +16,7 @@ type CountdownState = {
 };
 
 const getCountdown = (): CountdownState => {
-  const totalMs = HACKATHON_DATE.getTime() - Date.now();
+  const totalMs = BUILDATHON_DATE.getTime() - Date.now();
   const safeMs = Math.max(totalMs, 0);
 
   return {
@@ -107,7 +107,7 @@ const Index = () => {
           variants={itemVariants}
           className="text-base md:text-lg font-body text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          A college-level tech hackathon driving <span className="text-foreground font-semibold">AI for Social Impact & Sustainability</span>.
+          A college-level tech Buildathon driving <span className="text-foreground font-semibold">AI for Social Impact & Sustainability</span>.
           Registrations are <span className="text-accent font-bold">FREE</span> for all students across Mumbai.
         </motion.p>
 
@@ -127,9 +127,9 @@ const Index = () => {
 
         <motion.div variants={itemVariants} className="mb-8">
           <div className="inline-flex flex-col items-center gap-4 px-6 py-4 rounded-2xl glass">
-            <p className="font-display text-xs tracking-[0.2em] uppercase text-primary">Countdown To Hackathon Day</p>
+            <p className="font-display text-xs tracking-[0.2em] uppercase text-primary">Countdown To Buildathon Day</p>
             {hasStarted ? (
-              <p className="font-display text-base md:text-lg text-accent font-bold">Hackathon Day Is Live</p>
+              <p className="font-display text-base md:text-lg text-accent font-bold">Buildathon Day Is Live</p>
             ) : (
               <div className="grid grid-cols-4 gap-3 md:gap-4">
                 {[
@@ -152,11 +152,11 @@ const Index = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto"
         >
-          <ApplyWithUnstopButton className="w-full sm:w-auto flex justify-center" buttonWidth={312} />
+          <ApplyWithUnstopButton className="w-full sm:w-auto flex justify-center" buttonWidth={280} buttonHeight={56} />
           <Link
             to="/about"
             data-glitch-text="EXPLORE EVENT"
-            className="glitch-trigger w-full sm:w-auto px-8 py-4 rounded-xl glass border-primary/30 font-display font-semibold text-base md:text-lg transition-all hover:bg-primary/10 hover:border-primary/50 text-center"
+            className="glitch-trigger flex items-center justify-center w-full sm:w-[280px] h-[56px] rounded-lg glass border-primary/30 font-display font-semibold text-base transition-all hover:bg-primary/10 hover:border-primary/50 text-center"
             style={{ color: "hsl(210 100% 65%)" }}
           >
             EXPLORE EVENT

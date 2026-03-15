@@ -40,7 +40,7 @@ const About = () => {
               <BrandName />
             </h1>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
-              AI For Social Impact & Sustainability — A structured hackathon initiative organized by the Extension Work Team (EWT)
+              AI For Social Impact & Sustainability — A structured Buildathon initiative organized by the Extension Work Team (EWT)
               aimed at promoting innovation, technical learning, and social responsibility among students.
             </p>
           </AnimatedSection>
@@ -58,12 +58,12 @@ const About = () => {
                 </h2>
               </div>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                <BrandName /> is a structured hackathon initiative organized by the Extension Work Team (EWT) aimed at promoting innovation,
+                <BrandName /> is a structured Buildathon initiative organized by the Extension Work Team (EWT) aimed at promoting innovation,
                 technical learning, and social responsibility among students. The event focuses on developing Artificial Intelligence based
                 solutions to address real-world challenges related to society, sustainability, and education.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                The hackathon will provide a collaborative platform where students can work in teams, apply their knowledge, and build practical
+                The Buildathon will provide a collaborative platform where students can work in teams, apply their knowledge, and build practical
                 solutions using modern AI tools and technologies. This initiative supports the overall development of students by encouraging
                 creativity, teamwork, and problem-solving skills while contributing towards meaningful social impact.
               </p>

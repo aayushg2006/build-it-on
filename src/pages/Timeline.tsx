@@ -47,7 +47,7 @@ const timelineData: TimelineItem[] = [
     dateStart: new Date("2026-03-26T00:00:00+05:30"),
     dateEnd: new Date("2026-03-26T23:59:59+05:30"),
     icon: <Megaphone size={22} />,
-    desc: "Shortlisted teams are announced and receive all instructions needed for the final hackathon round.",
+    desc: "Shortlisted teams are announced and receive all instructions needed for the final Buildathon round.",
   },
   {
     phase: "Phase 4",
@@ -60,7 +60,7 @@ const timelineData: TimelineItem[] = [
   },
   {
     phase: "Phase 5",
-    title: "Hackathon Day - 6 Hour Sprint",
+    title: "Buildathon Day - 6 Hour Sprint",
     date: "March 28, 2026",
     dateStart: new Date("2026-03-28T00:00:00+05:30"),
     dateEnd: new Date("2026-03-28T23:59:59+05:30"),
@@ -109,7 +109,7 @@ const Timeline = () => {
             state: "Upcoming",
           }
         : {
-            title: "Hackathon Completed",
+            title: "Buildathon Completed",
             date: "Final phase completed on March 28, 2026",
             state: "Completed",
           };
