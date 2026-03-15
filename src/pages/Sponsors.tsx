@@ -5,8 +5,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 import { BookText, Download, FileDown, ShieldCheck } from "lucide-react";
+import BrochurePDF from "@/assets/PPT and Brochure/Brochure BUILD-IT ON.pdf";
+import PPTTemplate from "@/assets/PPT and Brochure/PPT TEMPLATE Build-it ON.pptx";
 
 const Sponsors = () => {
+  const handleDownload = (fileUrl: string, fileName: string) => {
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <PageTransition tagline="Guidelines That Turn Ideas Into Impact">
       <div className="min-h-screen pt-24 pb-16">
@@ -82,8 +93,8 @@ const Sponsors = () => {
                       </p>
                       <Button
                         type="button"
-                        disabled
-                        className="h-11 rounded-xl bg-primary/20 text-primary border border-primary/35 hover:bg-primary/20"
+                        onClick={() => handleDownload(PPTTemplate, "PPT TEMPLATE Build-it ON.pptx")}
+                        className="h-11 rounded-xl bg-primary/20 text-primary border border-primary/35 hover:bg-primary/30 transition-colors font-display"
                       >
                         <FileDown size={18} />
                         Download PPT Template
@@ -134,8 +145,8 @@ const Sponsors = () => {
                     </p>
                     <Button
                       type="button"
-                      disabled
-                      className="h-11 rounded-xl bg-accent/20 text-accent border border-accent/35 hover:bg-accent/20"
+                      onClick={() => handleDownload(BrochurePDF, "Brochure BUILD-IT ON.pdf")}
+                      className="h-11 rounded-xl bg-accent/20 text-accent border border-accent/35 hover:bg-accent/30 transition-colors font-display"
                     >
                       <Download size={18} />
                       Download Brochure

@@ -18,4 +18,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Added .pptx and .pdf to the array below
+  assetsInclude: ["**/*.JPG", "**/*.jpeg", "**/*.jpg", "**/*.png", "**/*.pptx", "**/*.pdf"],
 }));
