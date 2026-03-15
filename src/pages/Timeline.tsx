@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   AlertCircle,
@@ -10,81 +11,48 @@ import {
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
+import {
+  TIMELINE_PHASES,
+  getCurrentPhaseIndex,
+  getCurrentTimelineStatus,
+  type TimelinePhase,
+} from "@/lib/eventTimeline";
 
-type TimelineItem = {
-  phase: string;
-  title: string;
-  date: string;
-  dateStart: Date;
-  dateEnd: Date;
+type TimelineItem = TimelinePhase & {
   icon: JSX.Element;
-  desc: string;
 };
 
-const timelineData: TimelineItem[] = [
-  {
-    phase: "Phase 1",
-    title: "Idea Submission",
-    date: "March 16 - March 25, 2026",
-    dateStart: new Date("2026-03-16T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-25T23:59:59+05:30"),
-    icon: <FileText size={22} />,
-    desc: "Teams register and submit their AI-powered ideas for Education For All, Sustainability, or Social Issues.",
-  },
-  {
-    phase: "Phase 2",
-    title: "Online Screening & Shortlisting",
-    date: "March 25 - March 26, 2026",
-    dateStart: new Date("2026-03-25T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-26T23:59:59+05:30"),
-    icon: <Search size={22} />,
-    desc: "The review panel evaluates submissions on innovation, feasibility, and measurable social impact.",
-  },
-  {
-    phase: "Phase 3",
-    title: "Finalist Announcement",
-    date: "March 26, 2026",
-    dateStart: new Date("2026-03-26T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-26T23:59:59+05:30"),
-    icon: <Megaphone size={22} />,
-    desc: "Shortlisted teams are announced and receive all instructions needed for the final Buildathon round.",
-  },
-  {
-    phase: "Phase 4",
-    title: "Problem Statement Announcement",
-    date: "March 27, 2026",
-    dateStart: new Date("2026-03-27T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-27T23:59:59+05:30"),
-    icon: <AlertCircle size={22} />,
-    desc: "Official problem statements are released 24 hours before the event for final preparation and planning.",
-  },
-  {
-    phase: "Phase 5",
-    title: "Buildathon Day - 6 Hour Sprint",
-    date: "March 28, 2026",
-    dateStart: new Date("2026-03-28T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-28T23:59:59+05:30"),
-    icon: <Code size={22} />,
-    desc: "Final sprint day with mentoring, judging, and live presentations of working AI solutions.",
-  },
+const timelineIcons: JSX.Element[] = [
+  <FileText size={22} />,
+  <Search size={22} />,
+  <Megaphone size={22} />,
+  <AlertCircle size={22} />,
+  <Code size={22} />,
 ];
 
-const getCurrentPhase = () => {
-  const now = new Date();
+const timelineData: TimelineItem[] = TIMELINE_PHASES.map((item, index) => ({
+  ...item,
+  icon: timelineIcons[index],
+}));
 
-  for (let i = 0; i < timelineData.length; i += 1) {
-    if (now >= timelineData[i].dateStart && now <= timelineData[i].dateEnd) {
-      return i;
-    }
-  }
+const STATUS_REFRESH_INTERVAL_MS = 60 * 1000;
 
-  if (now < timelineData[0].dateStart) return -1;
-  return timelineData.length;
+const getStateClass = (state: string) => {
+  if (state === "In Progress") return "text-accent";
+  if (state === "Completed") return "text-primary";
+  return "text-muted-foreground";
 };
 
 const Timeline = () => {
   const shouldReduceMotion = useReducedMotion();
-  const currentPhase = getCurrentPhase();
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => setNow(new Date()), STATUS_REFRESH_INTERVAL_MS);
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  const currentPhase = getCurrentPhaseIndex(now);
 
   const getStatus = (index: number) => {
     if (index < currentPhase) return "completed";
@@ -95,31 +63,8 @@ const Timeline = () => {
   const progressRatio =
     currentPhase < 0 ? 0 : currentPhase >= timelineData.length ? 1 : (currentPhase + 1) / timelineData.length;
 
-  const currentStatusText =
-    currentPhase >= 0 && currentPhase < timelineData.length
-      ? {
-          title: timelineData[currentPhase].title,
-          date: timelineData[currentPhase].date,
-          state: "In Progress",
-        }
-      : currentPhase === -1
-        ? {
-            title: "Registrations Open",
-            date: "Phase 1 starts on March 16, 2026",
-            state: "Upcoming",
-          }
-        : {
-            title: "Buildathon Completed",
-            date: "Final phase completed on March 28, 2026",
-            state: "Completed",
-          };
-
-  const currentStateClass =
-    currentStatusText.state === "In Progress"
-      ? "text-accent"
-      : currentStatusText.state === "Completed"
-        ? "text-primary"
-        : "text-muted-foreground";
+  const currentStatusText = getCurrentTimelineStatus(now);
+  const currentStateClass = getStateClass(currentStatusText.state);
 
   return (
     <PageTransition tagline="Your Journey From Idea to Impact">

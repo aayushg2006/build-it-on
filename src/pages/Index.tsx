@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
 import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
+import { getCurrentTimelineStatus } from "@/lib/eventTimeline";
 
 const BUILDATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
 
@@ -48,6 +49,17 @@ const Index = () => {
   }, []);
 
   const hasStarted = countdown.totalMs <= 0;
+  const currentTimelineStatus = getCurrentTimelineStatus(new Date());
+  const currentStatusLabel = currentTimelineStatus.phase
+    ? `${currentTimelineStatus.phase}: ${currentTimelineStatus.title}`
+    : currentTimelineStatus.title;
+
+  const currentStatusClass =
+    currentTimelineStatus.state === "In Progress"
+      ? "text-accent"
+      : currentTimelineStatus.state === "Completed"
+        ? "text-primary"
+        : "text-primary";
 
   const itemVariants = shouldReduceMotion
     ? {
@@ -78,7 +90,10 @@ const Index = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <span className="font-body text-primary font-bold tracking-wide">Phase 1: Registrations Open</span>
+            <div className="flex flex-col items-start leading-tight">
+              <span className={`font-body font-bold tracking-wide ${currentStatusClass}`}>{currentStatusLabel}</span>
+              <span className="font-body text-[10px] md:text-xs text-muted-foreground">{currentTimelineStatus.date}</span>
+            </div>
           </div>
         </motion.div>
 
