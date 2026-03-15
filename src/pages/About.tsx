@@ -51,7 +51,7 @@ const organizingCommittee = [
     members: [
       { name: "Ramkumar Chaurasiya", position: "President/Marketing Head", image: RamkumarImg },
       { name: "Anand Dangi", position: "Event Head/Design & Creative Head", image: AnandImg },
-      { name: "Mahika Chaurasiya", position: "Tech and Development Head", image: MahikaImg },
+      { name: "Mahika Chaurasiya", position: "Tech and Development Head",    },
       { name: "Lakshita Hingar", position: "Content and Documentation Head", image: LakshitaImg },
     ]
   },
