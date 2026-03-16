@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
 import BrandName from "@/components/BrandName";
-import { Target, Lightbulb, Users, Heart, Brain, GraduationCap, Rocket, Crown, Code2, Palette, FileText, Zap, Megaphone } from "lucide-react";
+import { Target, Lightbulb, Users, Heart, Brain, GraduationCap, Rocket, Crown, Code2, Palette, FileText, Zap, Globe } from "lucide-react";
 
 // Import organizing committee images
 import RamkumarImg from "@/assets/OC Images/Ramkumar Chaurasiya.jpg";
@@ -21,7 +21,6 @@ import TanishaImg from "@/assets/OC Images/Tanisha Desai.jpg";
 import AnushkaImg from "@/assets/OC Images/Anushka Jadhav.jpg";
 import RiyaGuptaImg from "@/assets/OC Images/Riya Gupta.jpg";
 import RudraImg from "@/assets/OC Images/Rudra Umatiya.jpg";
-import GyaneshwarImg from "@/assets/OC Images/Gyaneshwar Jha.jpg";
 import BhavyaImg from "@/assets/OC Images/Bhavya Sharma.jpg";
 import GautamImg from "@/assets/OC Images/Gautam Gupta.png";
 import PriyaImg from "@/assets/OC Images/Priya Tiwari.jpeg"
@@ -49,7 +48,7 @@ const organizingCommittee = [
     color: "text-yellow-500",
     bgcolor: "bg-yellow-500/20",
     members: [
-      { name: "Ramkumar Chaurasiya", position: "President/Marketing Head", image: RamkumarImg },
+      { name: "Ramkumar Chaurasiya", position: "President", image: RamkumarImg },
       { name: "Anand Dangi", position: "Event Head/Design & Creative Head", image: AnandImg },
       { name: "Lakshita Hingar", position: "Content and Documentation Head", image: LakshitaImg },
       { name: "Mahika Chaurasiya", position: "Tech and Development Head",    },
@@ -77,7 +76,8 @@ const organizingCommittee = [
       { name: "Nikita Yadav", position: "Designer", image: NikitaImg },
       { name: "Riya Kasat", position: "Designer", image: RiyaKasatImg },
       { name: "Shruti Sawant", position: "Designer", image: ShrutiImg },
-      { name: "Priya Tiwari", position: "Designer", image: PriyaImg}
+      { name: "Priya Tiwari", position: "Designer", image: PriyaImg},
+      { name: "Bhavya Sharma", position: "Marketing Executive", image: BhavyaImg },
     ]
   },
   {
@@ -100,17 +100,18 @@ const organizingCommittee = [
       { name: "Anushka Jadhav", position: "Operations Lead", image: AnushkaImg },
       { name: "Riya Gupta", position: "Logistics Coordinator", image: RiyaGuptaImg },
       { name: "Rudra Umatiya", position: "Operations Support", image: RudraImg },
+      { name: "Gautam Gupta", position: "Marketing Executive", image: GautamImg },
     ]
   },
   {
-    section: "Marketing Team",
-    icon: Megaphone,
-    color: "text-red-500",
-    bgcolor: "bg-red-500/20",
+    section: "Platform Builders",
+    icon: Globe,
+    color: "text-cyan-500",
+    bgcolor: "bg-cyan-500/20",
     members: [
-      { name: "Gyaneshwar Jha", position: "Marketing Strategist", image: GyaneshwarImg },
-      { name: "Bhavya Sharma", position: "Marketing Executive", image: BhavyaImg },
-      { name: "Gautam Gupta", position: "Marketing Executive", image: GautamImg },
+      { name: "Aayush Gupta", position: "Website Developer", image: AayushImg },
+      { name: "Ved Nalavade", position: "Website Developer", image: VedImg },
+      { name: "Mahika Chaurasiya", position: "Website Developer",  },
     ]
   },
 ];

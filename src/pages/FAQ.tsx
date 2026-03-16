@@ -32,6 +32,10 @@ const faqs = [
     a: "No, solo participants are not allowed! Teams of 2-4 members are recommended.",
   },
   {
+    q: "Is Prototype required for Registration and Idea Submission Phase?",
+    a: "No, Prototype is not required for the initial registration and idea submission phase.",
+  },
+  {
     q: "Is there a registration fee?",
     a: "Registrations are completely FREE for all students across Mumbai!",
   },
