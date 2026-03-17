@@ -2,29 +2,7 @@ import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageTransition from "@/components/PageTransition";
 import BrandName from "@/components/BrandName";
-import { Target, Lightbulb, Users, Heart, Brain, GraduationCap, Rocket, Crown, Code2, Palette, FileText, Zap, Globe } from "lucide-react";
-
-// Import organizing committee images
-import RamkumarImg from "@/assets/OC Images/Ramkumar Chaurasiya.jpg";
-import AnandImg from "@/assets/OC Images/Anand Dangi_.jpg";
-import MahikaImg from "@/assets/OC Images/Mahika Chaurasiya.jpeg";
-import LakshitaImg from "@/assets/OC Images/Lakshita Hingar.jpg";
-import AayushImg from "@/assets/OC Images/Aayush Gupta.jpg";
-import AnanyaImg from "@/assets/OC Images/Ananya Pillai.jpg";
-import KalpImg from "@/assets/OC Images/Kalp Doshi.jpg";
-import NikitaImg from "@/assets/OC Images/Nikita Yadav.jpg";
-import RiyaKasatImg from "@/assets/OC Images/Riya kasat.jpg";
-import ShrutiImg from "@/assets/OC Images/Shruti Sawant.jpg";
-import DeepImg from "@/assets/OC Images/Deep Singh.jpg";
-import RituImg from "@/assets/OC Images/Ritu Howal.jpg";
-import TanishaImg from "@/assets/OC Images/Tanisha Desai.jpg";
-import AnushkaImg from "@/assets/OC Images/Anushka Jadhav.jpg";
-import RiyaGuptaImg from "@/assets/OC Images/Riya Gupta.jpg";
-import RudraImg from "@/assets/OC Images/Rudra Umatiya.jpg";
-import BhavyaImg from "@/assets/OC Images/Bhavya Sharma.jpg";
-import GautamImg from "@/assets/OC Images/Gautam Gupta.png";
-import PriyaImg from "@/assets/OC Images/Priya Tiwari.jpeg"
-import VedImg from "@/assets/OC Images/Ved Nalavade.jpeg"
+import { Target, Lightbulb, Users, Heart, Brain, GraduationCap, Rocket } from "lucide-react";
 
 const objectives = [
   "Encourage students to build AI-based solutions",
@@ -39,81 +17,6 @@ const expectedOutcomes = [
   "Practical project development experience",
   "Better teamwork and innovation skills",
   "Solutions for real-world problems",
-];
-
-const organizingCommittee = [
-  {
-    section: "Core Leadership",
-    icon: Crown,
-    color: "text-yellow-500",
-    bgcolor: "bg-yellow-500/20",
-    members: [
-      { name: "Ramkumar Chaurasiya", position: "President", image: RamkumarImg },
-      { name: "Anand Dangi", position: "Event Head/Design & Creative Head", image: AnandImg },
-      { name: "Lakshita Hingar", position: "Content and Documentation Head", image: LakshitaImg },
-      { name: "Mahika Chaurasiya", position: "Tech and Development Head",    },
-       
-    ]
-  },
-  {
-    section: "Tech and Development Team",
-    icon: Code2,
-    color: "text-blue-500",
-    bgcolor: "bg-blue-500/20",
-    members: [
-      { name: "Aayush Gupta", position: "Developer", image: AayushImg },
-      { name: "Ananya Pillai", position: "Developer", image: AnanyaImg },
-      { name: "Ved Nalavade", position: "Developer", image: VedImg},
-      { name: "Kalp Doshi", position: "Developer", image: KalpImg },
-    ]
-  },
-  {
-    section: "Design and Creative Team",
-    icon: Palette,
-    color: "text-pink-500",
-    bgcolor: "bg-pink-500/20",
-    members: [
-      { name: "Nikita Yadav", position: "Designer", image: NikitaImg },
-      { name: "Riya Kasat", position: "Designer", image: RiyaKasatImg },
-      { name: "Shruti Sawant", position: "Designer", image: ShrutiImg },
-      { name: "Priya Tiwari", position: "Designer", image: PriyaImg},
-      { name: "Bhavya Sharma", position: "Marketing Executive", image: BhavyaImg },
-    ]
-  },
-  {
-    section: "Content and Documentation Team",
-    icon: FileText,
-    color: "text-green-500",
-    bgcolor: "bg-green-500/20",
-    members: [
-      { name: "Deep Singh", position: "Content Creator", image: DeepImg },
-      { name: "Ritu Howal", position: "Content Creator", image: RituImg },
-      { name: "Tanisha Desai", position: "Content Creator", image: TanishaImg },
-    ]
-  },
-  {
-    section: "Operations and Logistics Team",
-    icon: Zap,
-    color: "text-orange-500",
-    bgcolor: "bg-orange-500/20",
-    members: [
-      { name: "Anushka Jadhav", position: "Operations Lead", image: AnushkaImg },
-      { name: "Riya Gupta", position: "Logistics Coordinator", image: RiyaGuptaImg },
-      { name: "Rudra Umatiya", position: "Operations Support", image: RudraImg },
-      { name: "Gautam Gupta", position: "Marketing Executive", image: GautamImg },
-    ]
-  },
-  {
-    section: "Platform Builders",
-    icon: Globe,
-    color: "text-cyan-500",
-    bgcolor: "bg-cyan-500/20",
-    members: [
-      { name: "Aayush Gupta", position: "Website Developer", image: AayushImg },
-      { name: "Ved Nalavade", position: "Website Developer", image: VedImg },
-      { name: "Mahika Chaurasiya", position: "Website Developer",  },
-    ]
-  },
 ];
 
 const About = () => {
@@ -234,82 +137,24 @@ const About = () => {
             ))}
           </div>
 
-          {/* Organizing Committee */}
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-gradient mb-4">
-              Our Team
-            </h2>
-            <p className="text-muted-foreground">
-              Meet the talented individuals behind <BrandName />
-            </p>
+          {/* Query Contacts */}
+          <AnimatedSection className="max-w-4xl mx-auto">
+            <div className="card glass-strong rounded-3xl p-8 md:p-10 border border-primary/20 text-center">
+              <h2 className="font-display text-2xl md:text-3xl font-bold mb-3">For Queries, Contact</h2>
+              <div className="space-y-3 text-muted-foreground text-base md:text-lg">
+                <p>
+                  <span className="text-foreground font-semibold">Ramkumar Chaurasiya</span> - President
+                  <br />
+                  <span className="font-medium">8692013791</span>
+                </p>
+                <p>
+                  <span className="text-foreground font-semibold">Anand Dangii</span> - Event Head
+                  <br />
+                  <span className="font-medium">8928882369</span>
+                </p>
+              </div>
+            </div>
           </AnimatedSection>
-
-          {/* Committee Sections */}
-          <div className="space-y-20 max-w-6xl mx-auto px-4">
-            {organizingCommittee.map((team, teamIndex) => {
-              const IconComponent = team.icon;
-              return (
-                <AnimatedSection key={teamIndex} delay={teamIndex * 0.1}>
-                  <div className="w-full">
-                    {/* Section Header - Centered */}
-                    <div className="flex items-center justify-center gap-3 mb-12">
-                      <div className={`p-3 rounded-xl ${team.bgcolor}`}>
-                        <IconComponent className={`${team.color} w-6 h-6`} />
-                      </div>
-                      <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center">
-                        {team.section}
-                      </h3>
-                    </div>
-
-                    {/* Team Members Grid - Centered */}
-                    <div className="flex justify-center w-full">
-                      <div className={`grid ${team.members.length === 4 ? 'grid-cols-2 sm:grid-cols-2 md:grid-cols-4' : 'grid-cols-2 sm:grid-cols-2 lg:grid-cols-3'} gap-6 w-full max-w-5xl`}>
-                        {team.members.map((member, memberIndex) => (
-                          <AnimatedSection key={memberIndex} delay={memberIndex * 0.05}>
-                            <motion.div
-                              whileHover={{ y: -8, scale: 1.05 }}
-                              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                              className="group flex flex-col items-center"
-                            >
-                              <div className="relative overflow-hidden rounded-2xl mb-4 aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 border border-border/50 hover:border-primary/30 transition-colors w-full">
-                                {/* Image Container */}
-                                <img
-                                  src={member.image}
-                                  alt={member.name}
-                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                />
-                                
-                                {/* Overlay - Only for Core Leadership */}
-                                {teamIndex === 0 && (
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center">
-                                    <div className="p-4 w-full text-center">
-                                      <p className="text-white text-xs font-semibold opacity-90">{member.position}</p>
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
-                              
-                              {/* Member Info - Centered */}
-                              <div className="w-full text-center">
-                                <h4 className="font-display text-sm font-bold text-foreground line-clamp-2">
-                                  {member.name}
-                                </h4>
-                                {teamIndex === 0 && (
-                                  <p className="text-muted-foreground text-xs mt-1 line-clamp-1">
-                                    {member.position}
-                                  </p>
-                                )}
-                              </div>
-                            </motion.div>
-                          </AnimatedSection>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              );
-            })}
-          </div>
         </div>
       </div>
     </PageTransition>
