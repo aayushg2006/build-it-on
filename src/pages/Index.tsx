@@ -6,6 +6,10 @@ import ScrambleText from "@/components/ScrambleText";
 import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 import { getCurrentTimelineStatus } from "@/lib/eventTimeline";
 
+// Using the exact paths from your folder structure!
+import geekRoomLogo from "@/assets/Sponsor Logos/GeekRoom.png";
+import xyzLogo from "@/assets/Sponsor Logos/xyz.png";
+
 const BUILDATHON_DATE = new Date("2026-03-28T00:00:00+05:30");
 
 type CountdownState = {
@@ -79,7 +83,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-x-clip pb-32">
       <motion.div
-        className="relative z-10 container mx-auto px-6 text-center"
+        className="relative z-10 container mx-auto px-6 text-center mt-24"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -165,7 +169,7 @@ const Index = () => {
 
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto mb-24"
         >
           <ApplyWithUnstopButton className="w-full sm:w-auto flex justify-center" buttonWidth={280} buttonHeight={56} />
           <Link
@@ -177,8 +181,70 @@ const Index = () => {
             EXPLORE EVENT
           </Link>
         </motion.div>
-      </motion.div>
 
+        {/* --- ENHANCED PARTNERS SECTION --- */}
+        <motion.div variants={itemVariants} className="mt-16 w-full max-w-5xl mx-auto relative z-10 border-t border-border/40 pt-16">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-display tracking-[0.2em] uppercase mb-4">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              Supported By
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[hsl(150_100%_45%)]">Partners</span>
+            </h2>
+            <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
+              Collaborating with industry leaders to bring you the best buildathon experience.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
+            {/* Geek Room Partner */}
+            <a 
+              href="https://forms.gle/VHo7F48CJ9ULxpM2A" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="relative group flex flex-col items-center justify-center p-8 md:p-10 rounded-3xl glass bg-card/20 border-border/50 hover:border-primary/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_hsla(210,100%,50%,0.25)] overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10 h-20 md:h-24 w-full flex items-center justify-center mb-4">
+                <img 
+                  src={geekRoomLogo} 
+                  alt="Geek Room Logo" 
+                  className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 drop-shadow-lg" 
+                />
+              </div>
+              <p className="relative z-10 font-display text-sm font-semibold tracking-wide text-foreground/70 group-hover:text-primary transition-colors">
+                Community Partner
+              </p>
+            </a>
+
+            {/* .xyz Partner */}
+            <a 
+              href="https://gen.xyz/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="relative group flex flex-col items-center justify-center p-8 md:p-10 rounded-3xl glass bg-card/20 border-border/50 hover:border-[hsl(150_100%_45%)]/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_hsla(150,100%,45%,0.25)] overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[hsl(150_100%_45%)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10 h-20 md:h-24 w-full flex items-center justify-center mb-4">
+                <img 
+                  src={xyzLogo} 
+                  alt=".xyz Logo" 
+                  className="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 drop-shadow-lg" 
+                />
+              </div>
+              <p className="relative z-10 font-display text-sm font-semibold tracking-wide text-foreground/70 group-hover:text-[hsl(150_100%_45%)] transition-colors">
+                Domain Partner
+              </p>
+            </a>
+          </div>
+        </motion.div>
+        {/* ------------------------------------ */}
+
+      </motion.div>
     </div>
   );
 };
