@@ -16,7 +16,7 @@ const CommonFooter = () => {
           <img src="/unstop-logo-white.svg" alt="Unstop" className="h-5 w-auto" loading="lazy" decoding="async" />
         </a>
       </div>
-      <p>©2026 All rights reserved | Made with ❤︎⁠ by the <BrandName /> Team</p>
+   <p>© 2026 Build-it ON | Developed by TCET EWT Students Chapter</p>
     </footer>
   );
 };

@@ -20,36 +20,36 @@ const faqs = [
     ),
   },
   {
-    q: "Who can participate?",
-    a: "Any student with a passion for AI and social impact can participate. Teams of 2-4 members are recommended. Both beginners and experienced developers are welcome.",
+    q: "1. What do we need to submit in Round 1?",
+    a: "You need to submit your idea in the given PPT format on Unstop based on Social, Education, or Sustainability themes.",
   },
   {
-    q: "What are the tracks?",
-    a: "There are three tracks: (1) Education For All — build AI solutions for accessible education, (2) Sustainability — create AI tools for environmental sustainability, and (3) Social Issues — address pressing social challenges with AI.",
+    q: "Is a prototype required for Round 1?",
+    a: "No, only the idea PPT is required for Round 1.",
   },
   {
-    q: "Is there a solo participant allowed?",
-    a: "No, solo participants are not allowed! Teams of 2-4 members are recommended.",
+    q: "Will a problem statement be given in Round 1?",
+    a: "No, you have to submit your own idea based on the theme. A problem statement will be given only for the final round if you are selected.",
   },
   {
-    q: "Is Prototype required for Registration and Idea Submission Phase?",
-    a: "No, Prototype is not required for the initial registration and idea submission phase.",
+    q: "What is the last date for Round 1 submission?",
+    a: "25 March, 2 PM.",
   },
   {
-    q: "Is there a registration fee?",
-    a: "Registrations are completely FREE for all students across Mumbai!",
+    q: "When should the GitHub repository be created?",
+    a: "The repository should be created only after the problem statement is released. Repositories made before that will not be considered",
   },
   {
-    q: "Refreshments?",
-    a: "Lunch will be provided to all participants, no snacks!",
+    q: "What will happen in the final round?",
+    a: "Participants can start planning and building after the problem statement is released. On the final day, there will be a 6-hour Buildathon where you will complete and present your prototype to the mentors.",
   },
   {
-    q: "Will accomadations be provided?",
-    a: "No Accomadations will be provided by the event organizers.",
+    q: "How long is the final Buildathon?",
+    a: "It is a 6-hour offline Buildathon.",
   },
   {
-    q: "How will projects be judged?",
-    a: "Projects will be evaluated on innovation, AI integration, social impact, feasibility, and presentation quality by an expert panel of judges.",
+    q: "Will refreshments be provided?",
+    a: "Yes, refreshments will be provided during the event.",
   },
   {
     q: "Will there be mentors?",

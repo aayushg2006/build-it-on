@@ -25,32 +25,32 @@ export const TIMELINE_PHASES: TimelinePhase[] = [
     title: "Registration and Idea Submission",
     date: "March 16 - March 25, 2026",
     dateStart: new Date("2026-03-16T10:00:00+05:30"),
-    dateEnd: new Date("2026-03-25T23:59:59+05:30"),
-    desc: "Teams register and submit their AI-powered ideas for Education For All, Sustainability, or Social Issues.",
+    dateEnd: new Date("2026-03-25T14:00:00+05:30"), // ✅ 2 PM end
+    desc: "Teams register and submit their idea PPT on Unstop based on the given themes.",
   },
   {
     phase: "Phase 2",
     title: "Online Screening & Shortlisting",
     date: "March 26, 2026",
     dateStart: new Date("2026-03-26T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-26T13:00:00+05:30"),
-    desc: "The review panel evaluates submissions on innovation, feasibility, and measurable social impact.",
+    dateEnd: new Date("2026-03-26T14:00:00+05:30"), // ✅ till 2 PM
+    desc: "Submissions are reviewed and shortlisted teams are selected.",
   },
   {
     phase: "Phase 3",
     title: "Finalist Announcement",
     date: "March 26, 2026",
-    dateStart: new Date("2026-03-26T13:00:00+05:30"),
+    dateStart: new Date("2026-03-26T14:00:00+05:30"), // ✅ starts at 2 PM
     dateEnd: new Date("2026-03-26T23:59:59+05:30"),
-    desc: "Shortlisted teams are announced and receive all instructions needed for the final Buildathon round.",
+    desc: "Shortlisted teams are announced and further instructions are shared.",
   },
   {
     phase: "Phase 4",
     title: "Problem Statement Announcement",
     date: "March 27, 2026",
-    dateStart: new Date("2026-03-27T00:00:00+05:30"),
+    dateStart: new Date("2026-03-27T08:00:00+05:30"), // ✅ 8 AM
     dateEnd: new Date("2026-03-27T23:59:59+05:30"),
-    desc: "Official problem statements are released 24 hours before the event for final preparation and planning.",
+    desc: "Problem statement is released for final round. Teams can start planning and building.",
   },
   {
     phase: "Phase 5",
@@ -58,7 +58,7 @@ export const TIMELINE_PHASES: TimelinePhase[] = [
     date: "March 28, 2026",
     dateStart: new Date("2026-03-28T00:00:00+05:30"),
     dateEnd: new Date("2026-03-28T23:59:59+05:30"),
-    desc: "Final sprint day with mentoring, judging, and live presentations of working AI solutions.",
+    desc: "Teams complete and present their prototype during the 6-hour offline Buildathon.",
   },
 ];
 

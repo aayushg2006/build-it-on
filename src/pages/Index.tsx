@@ -194,10 +194,10 @@ const Index = () => {
               Supported By
             </div>
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[hsl(150_100%_45%)]">Partners</span>
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[hsl(150_100%_45%)]">Sponsors</span>
             </h2>
             <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
-              Collaborating with industry leaders to bring you the best buildathon experience.
+              Providing tools, resources, and exclusive perks for participants.
             </p>
           </div>
 
@@ -218,7 +218,7 @@ const Index = () => {
                 />
               </div>
               <p className="relative z-10 font-display text-sm font-semibold tracking-wide text-foreground/70 group-hover:text-primary transition-colors">
-                Community Partner
+                {/* Community Partner */}
               </p>
             </a>
 
@@ -238,7 +238,7 @@ const Index = () => {
                 />
               </div>
               <p className="relative z-10 font-display text-sm font-semibold tracking-wide text-foreground/70 group-hover:text-[hsl(150_100%_45%)] transition-colors">
-                Domain Partner
+                {/* Domain Partner */}
               </p>
             </a>
 
@@ -258,7 +258,7 @@ const Index = () => {
                 />
               </div>
               <p className="relative z-10 font-display text-sm font-semibold tracking-wide text-foreground/70 group-hover:text-[#EA4B71] transition-colors">
-                Workflow Partner
+                {/* Workflow Partner */}
               </p>
             </a>
           </div>
