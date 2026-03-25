@@ -1,20 +1,23 @@
 type BrandNameProps = {
   className?: string;
+  singleLine?: boolean;
 };
 
-const BrandName = ({ className }: BrandNameProps) => {
+const BrandName = ({ className, singleLine = true }: BrandNameProps) => {
   return (
     <span
       className={className}
       style={{
         display: "inline-flex",
-        flexDirection: "column",
+        flexDirection: singleLine ? "row" : "column",
+        alignItems: singleLine ? "baseline" : "center",
+        gap: singleLine ? "0.35em" : 0,
+        whiteSpace: singleLine ? "nowrap" : "normal",
         lineHeight: 1.05,
-        transform: "scale(0.9)", // 🔥 slightly smaller
-        transformOrigin: "left",
+        transform: singleLine ? "none" : "scale(0.9)",
+        transformOrigin: singleLine ? "initial" : "center",
       }}
     >
-      {/* Pragati 2.0 */}
       <span
         style={{
           fontWeight: 700,
@@ -28,7 +31,6 @@ const BrandName = ({ className }: BrandNameProps) => {
         Pragati 2.0
       </span>
 
-      {/* Build-it ON */}
       <span
         style={{
           fontWeight: 800,

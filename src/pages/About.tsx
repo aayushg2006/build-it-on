@@ -28,7 +28,7 @@ const About = () => {
           <AnimatedSection className="text-center mb-16">
             <p className="text-primary font-display text-sm tracking-[0.3em] uppercase mb-4">About The Event</p>
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              <BrandName />
+              <BrandName singleLine={false} />
             </h1>
             <p className="text-muted-foreground text-lg max-w-3xl mx-auto leading-relaxed">
               AI For Social Impact & Sustainability — A structured Buildathon initiative organized by the Extension Work Team (EWT)

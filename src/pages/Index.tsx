@@ -108,18 +108,19 @@ const Index = () => {
   </p>
 
   <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
-    
-    {/* Pragati 2.0 */}
-    <div
-      className="block"
-      style={{
-        lineHeight: 1,
-        background: "linear-gradient(90deg, #ffaa00, #00ff99)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-      }}
-    >
-      Pragati 2.0
+    <div className="block">
+      <ScrambleText
+        text="Pragati 2.0"
+        className="drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]"
+        style={{
+          lineHeight: 1,
+          background: "linear-gradient(90deg, #ffaa00, #00ff99)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }}
+        delay={120}
+        duration={980}
+      />
     </div>
 
     {/* Build-it ON */}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -7,6 +7,7 @@ const FALLBACK_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 type ScrambleTextProps = {
   text: string;
   className?: string;
+  style?: CSSProperties;
   delay?: number;
   duration?: number;
   charset?: string;
@@ -15,6 +16,7 @@ type ScrambleTextProps = {
 const ScrambleText = ({
   text,
   className,
+  style,
   delay = 0,
   duration = 820,
   charset = FALLBACK_CHARSET,
@@ -77,9 +79,13 @@ const ScrambleText = ({
   }, [chars, charset, delay, duration, shouldReduceMotion, text]);
 
   return (
-    <span className={cn("relative inline-block align-top whitespace-pre", className)} aria-label={text}>
-      <span className="invisible">{text}</span>
-      <span className="absolute inset-0">{renderedText}</span>
+    <span className="relative inline-block align-top whitespace-pre" aria-label={text}>
+      <span className={cn("invisible", className)} style={style}>
+        {text}
+      </span>
+      <span className={cn("absolute inset-0", className)} style={style}>
+        {renderedText}
+      </span>
     </span>
   );
 };

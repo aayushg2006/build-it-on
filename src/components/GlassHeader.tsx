@@ -30,7 +30,9 @@ const GlassHeader = () => {
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-display text-base font-bold"><BrandName /></span>
+          <span className="font-display text-base font-bold leading-none">
+            <BrandName singleLine={false} />
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">

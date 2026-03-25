@@ -9,7 +9,7 @@ const faqs = [
   {
     q: (
       <>
-        What is PRAGATI 2.0 BUILD-IT ON ?
+        What is <BrandName /> ?
       </>
     ),
     a: (
@@ -74,7 +74,7 @@ const FAQ = () => {
               FAQs
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Everything you need to know about PRAGATI 2.0 BUILD-IT ON
+              Everything you need to know about <BrandName />
             </p>
           </AnimatedSection>
 
