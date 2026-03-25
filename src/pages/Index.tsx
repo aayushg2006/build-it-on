@@ -102,26 +102,45 @@ const Index = () => {
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="mb-8">
-          <p className="font-display text-xs md:text-sm text-muted-foreground uppercase tracking-[0.3em] mb-4 font-semibold">
-            TCET EWT Students Chapter Presents
-          </p>
-          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
-            <ScrambleText
-              text="Build-it"
-              className="text-[hsl(210_100%_55%)]"
-              delay={260}
-              duration={840}
-            />
-            <span aria-hidden="true"> </span>
-            <ScrambleText
-              text="ON"
-              className="text-[hsl(150_100%_45%)]"
-              delay={420}
-              duration={720}
-            />
-          </h1>
-        </motion.div>
+      <motion.div variants={itemVariants} className="mb-8">
+  <p className="font-display text-xs md:text-sm text-muted-foreground uppercase tracking-[0.3em] mb-4 font-semibold">
+    TCET EWT Students Chapter Presents
+  </p>
+
+  <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-none tracking-tight">
+    
+    {/* Pragati 2.0 */}
+    <div
+      className="block"
+      style={{
+        lineHeight: 1,
+        background: "linear-gradient(90deg, #ffaa00, #00ff99)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+      }}
+    >
+      Pragati 2.0
+    </div>
+
+    {/* Build-it ON */}
+    <div className="block leading-none mt-2">
+      <ScrambleText
+        text="Build-it"
+        className="text-[#00bfff] drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]"
+        delay={260}
+        duration={840}
+      />
+      <span className="mx-2"> </span>
+      <ScrambleText
+        text="ON"
+        className="text-[#00ff99] font-extrabold drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]"
+        delay={420}
+        duration={720}
+      />
+    </div>
+
+  </h1>
+</motion.div>
 
         <motion.p
           variants={itemVariants}

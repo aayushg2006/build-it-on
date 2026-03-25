@@ -82,7 +82,7 @@ const Sponsors = () => {
                     <div className="rounded-2xl border border-border/60 bg-card/40 p-4 md:p-5">
                       <p className="text-sm md:text-base text-foreground">
                         <span className="font-semibold text-primary">5.</span> Your idea should align with the generalized{" "}
-                        <span className="font-semibold"><BrandName /></span>{" "}
+                       Event {" "}
                         tracks.
                       </p>
                     </div>
