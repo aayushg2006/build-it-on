@@ -25,22 +25,22 @@ export const TIMELINE_PHASES: TimelinePhase[] = [
     title: "Registration and Idea Submission",
     date: "March 16 - March 25, 2026",
     dateStart: new Date("2026-03-16T10:00:00+05:30"),
-    dateEnd: new Date("2026-03-25T14:00:00+05:30"), // ✅ 2 PM end
+    dateEnd: new Date("2026-03-25T14:00:00+05:30"),
     desc: "Teams register and submit their idea PPT on Unstop based on the given themes.",
   },
   {
     phase: "Phase 2",
     title: "Online Screening & Shortlisting",
-    date: "March 26, 2026",
-    dateStart: new Date("2026-03-26T00:00:00+05:30"),
-    dateEnd: new Date("2026-03-26T14:00:00+05:30"), // ✅ till 2 PM
+    date: "March 25 - March 26, 2026",
+    dateStart: new Date("2026-03-25T14:00:00+05:30"),
+    dateEnd: new Date("2026-03-26T14:00:00+05:30"),
     desc: "Submissions are reviewed and shortlisted teams are selected.",
   },
   {
     phase: "Phase 3",
     title: "Finalist Announcement",
     date: "March 26, 2026",
-    dateStart: new Date("2026-03-26T14:00:00+05:30"), // ✅ starts at 2 PM
+    dateStart: new Date("2026-03-26T14:00:00+05:30"),
     dateEnd: new Date("2026-03-26T23:59:59+05:30"),
     desc: "Shortlisted teams are announced and further instructions are shared.",
   },
@@ -48,7 +48,7 @@ export const TIMELINE_PHASES: TimelinePhase[] = [
     phase: "Phase 4",
     title: "Problem Statement Announcement",
     date: "March 27, 2026",
-    dateStart: new Date("2026-03-27T08:00:00+05:30"), // ✅ 8 AM
+    dateStart: new Date("2026-03-27T08:00:00+05:30"),
     dateEnd: new Date("2026-03-27T23:59:59+05:30"),
     desc: "Problem statement is released for final round. Teams can start planning and building.",
   },
@@ -74,7 +74,17 @@ export const getCurrentPhaseIndex = (now: Date = new Date()): number => {
 
   if (matchedIndex !== -1) return matchedIndex;
   if (now < TIMELINE_PHASES[0].dateStart) return -1;
-  return TIMELINE_PHASES.length;
+
+  const finalPhase = TIMELINE_PHASES[TIMELINE_PHASES.length - 1];
+  if (now > finalPhase.dateEnd) return TIMELINE_PHASES.length;
+
+  // If there is a gap between configured windows, pin to the latest started phase
+  // instead of jumping directly to "Completed".
+  for (let i = TIMELINE_PHASES.length - 1; i >= 0; i -= 1) {
+    if (now >= TIMELINE_PHASES[i].dateStart) return i;
+  }
+
+  return -1;
 };
 
 export const getCurrentTimelineStatus = (now: Date = new Date()): CurrentTimelineStatus => {
