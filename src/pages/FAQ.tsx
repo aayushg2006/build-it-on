@@ -20,7 +20,7 @@ const faqs = [
     ),
   },
   {
-    q: "1. What do we need to submit in Round 1?",
+    q: "What do we need to submit in Round 1?",
     a: "You need to submit your idea in the given PPT format on Unstop based on Social, Education, or Sustainability themes.",
   },
   {
