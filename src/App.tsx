@@ -19,6 +19,7 @@ import Sponsors from "./pages/Sponsors.tsx";
 import Contact from "./pages/Contact.tsx";
 import FAQ from "./pages/FAQ.tsx";
 import ProblemStatements from "./pages/ProblemStatements.tsx";
+import Shortlisted from "./pages/Shortlisted.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const AppContent = () => {
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/shortlisted" element={<Shortlisted />} />
         <Route path="/problem-statements" element={<ProblemStatements />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

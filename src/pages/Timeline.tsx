@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   AlertCircle,
   CheckCircle2,
@@ -249,6 +250,26 @@ const Timeline = () => {
                         <h3 className="font-display text-lg font-bold text-foreground mb-1">{item.title}</h3>
                         <p className="text-primary/80 font-display text-sm mb-3">{item.date}</p>
                         <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                        {item.phase === "Phase 3" && (status === "active" || status === "completed") && (
+                          <div className={`mt-4 flex ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+                            <Link
+                              to="/shortlisted"
+                              className="inline-flex items-center rounded-lg border border-border/70 bg-muted/25 px-4 py-2 text-xs md:text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/15 hover:text-primary"
+                            >
+                              View Shortlisted Teams
+                            </Link>
+                          </div>
+                        )}
+                        {item.phase === "Phase 4" && (status === "active" || status === "completed") && (
+                          <div className={`mt-4 flex ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+                            <Link
+                              to="/problem-statements"
+                              className="inline-flex items-center rounded-lg border border-border/70 bg-muted/25 px-4 py-2 text-xs md:text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/15 hover:text-primary"
+                            >
+                              View Problem Statements
+                            </Link>
+                          </div>
+                        )}
                       </motion.div>
                     </div>
 

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 import BrandName from "@/components/BrandName";
 
 const navLinks = [
@@ -52,10 +51,13 @@ const GlassHeader = () => {
           ))}
         </nav>
 
-        <ApplyWithUnstopButton
-          className="hidden lg:block"
-          buttonWidth={240}
-        />
+        <Link
+          to="/shortlisted"
+          data-glitch-text="View Results"
+          className="hidden lg:inline-flex items-center justify-center px-6 py-3 rounded-xl font-display font-bold text-sm uppercase tracking-[0.12em] border border-primary/45 bg-primary/20 text-primary shadow-[0_0_25px_hsla(210,100%,55%,0.42)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/30 hover:border-primary/70 hover:shadow-[0_0_38px_hsla(210,100%,55%,0.55)] glitch-link"
+        >
+          View Results
+        </Link>
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -89,12 +91,13 @@ const GlassHeader = () => {
                   {link.label}
                 </Link>
               ))}
-              <div className="mt-2 flex justify-center px-2" onClick={() => setMobileOpen(false)}>
-                <ApplyWithUnstopButton
-                  className="w-full flex justify-center"
-                  buttonWidth={312}
-                />
-              </div>
+              <Link
+                to="/shortlisted"
+                onClick={() => setMobileOpen(false)}
+                className="mt-2 inline-flex w-full items-center justify-center rounded-xl border border-primary/45 bg-primary/20 px-4 py-3 font-display font-bold text-sm uppercase tracking-[0.1em] text-primary shadow-[0_0_20px_hsla(210,100%,55%,0.35)] transition-all duration-300 hover:bg-primary/30 hover:border-primary/70"
+              >
+                View Results
+              </Link>
             </div>
           </motion.div>
         )}

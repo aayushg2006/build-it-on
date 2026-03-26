@@ -3,7 +3,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar, MapPin } from "lucide-react";
 import ScrambleText from "@/components/ScrambleText";
-import ApplyWithUnstopButton from "@/components/ApplyWithUnstopButton";
 import { getCurrentTimelineStatus } from "@/lib/eventTimeline";
 
 // Using the exact paths from your folder structure!
@@ -98,6 +97,22 @@ const Index = () => {
             <div className="flex flex-col items-start leading-tight">
               <span className={`font-body font-bold tracking-wide ${currentStatusClass}`}>{currentStatusLabel}</span>
               <span className="font-body text-[10px] md:text-xs text-muted-foreground">{currentTimelineStatus.date}</span>
+              {currentTimelineStatus.phase === "Phase 3" && (
+                <Link
+                  to="/shortlisted"
+                  className="mt-1 font-body text-[11px] md:text-xs font-bold underline underline-offset-4 decoration-2 text-primary hover:text-primary/80 transition-colors"
+                >
+                  View the Shortlisted Teams →
+                </Link>
+              )}
+              {currentTimelineStatus.phase === "Phase 4" && (
+                <Link
+                  to="/problem-statements"
+                  className="mt-1 font-body text-[11px] md:text-xs font-bold underline underline-offset-4 decoration-2 text-accent hover:text-accent/80 transition-colors"
+                >
+                  View Problem Statements →
+                </Link>
+              )}
             </div>
           </div>
         </motion.div>
@@ -192,7 +207,12 @@ const Index = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm sm:max-w-none mx-auto mb-24"
         >
-          <ApplyWithUnstopButton className="w-full sm:w-auto flex justify-center" buttonWidth={280} buttonHeight={56} />
+          <Link
+            to="/shortlisted"
+            className="inline-flex w-full sm:w-[320px] h-[56px] items-center justify-center rounded-lg border border-primary/45 bg-primary/20 px-5 font-display text-base font-bold text-primary shadow-[0_0_35px_hsla(210,100%,55%,0.45)] transition-all duration-300 hover:scale-[1.03] hover:bg-primary/30 hover:shadow-[0_0_45px_hsla(210,100%,55%,0.58)]"
+          >
+            🎉 View Shortlisted Teams
+          </Link>
           <Link
             to="/about"
             data-glitch-text="EXPLORE EVENT"
