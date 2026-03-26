@@ -21,7 +21,9 @@ const useHolographicCards = (scopeKey: string, selector = DEFAULT_CARD_SELECTOR)
       return;
     }
 
-    const cards = Array.from(document.querySelectorAll<HTMLElement>(selector));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(selector)).filter(
+      (card) => card.dataset.localHolo !== "true",
+    );
     if (cards.length === 0) return;
 
     const cleanups = cards.map((card) => {

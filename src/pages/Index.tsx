@@ -54,6 +54,8 @@ const Index = () => {
 
   const hasStarted = countdown.totalMs <= 0;
   const currentTimelineStatus = getCurrentTimelineStatus(new Date());
+  const showProblemStatementsLink =
+    currentTimelineStatus.phase === "Phase 4" || currentTimelineStatus.phase === "Phase 5";
   const currentStatusLabel = currentTimelineStatus.phase
     ? `${currentTimelineStatus.phase}: ${currentTimelineStatus.title}`
     : currentTimelineStatus.title;
@@ -105,7 +107,7 @@ const Index = () => {
                   View the Shortlisted Teams →
                 </Link>
               )}
-              {currentTimelineStatus.phase === "Phase 4" && (
+              {showProblemStatementsLink && (
                 <Link
                   to="/problem-statements"
                   className="mt-1 font-body text-[11px] md:text-xs font-bold underline underline-offset-4 decoration-2 text-accent hover:text-accent/80 transition-colors"

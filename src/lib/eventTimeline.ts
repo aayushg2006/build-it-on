@@ -48,7 +48,7 @@ export const TIMELINE_PHASES: TimelinePhase[] = [
     phase: "Phase 4",
     title: "Problem Statement Announcement",
     date: "March 27, 2026",
-    dateStart: new Date("2026-03-27T08:00:00+05:30"),
+    dateStart: new Date("2026-03-27T09:00:00+05:30"),
     dateEnd: new Date("2026-03-27T23:59:59+05:30"),
     desc: "Problem statement is released for final round. Teams can start planning and building.",
   },
